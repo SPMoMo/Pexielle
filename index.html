@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pexelle - Pixel Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Logo Pexelle -->
+    <img src="Pexelle/pexelle-logo.png" alt="Logo Pexelle" class="logo">
+
+    <!-- Titre -->
+    <h1 id="title">PEXELLE</h1>
+
+    <div class="container">
+        <!-- Canevas pour dessiner les pixels -->
+        <canvas id="pixel-canvas"></canvas>
+
+        <br>
+
+        <!-- Sélecteur de couleur -->
+        <input type="color" id="colorPicker" value="#000000">
+
+        <!-- Palette de couleurs personnalisée -->
+        <div class="color-palette">
+            <div class="color-box" style="background-color: #FF0000;"></div>
+            <div class="color-box" style="background-color: #00FF00;"></div>
+            <div class="color-box" style="background-color: #0000FF;"></div>
+            <div class="color-box" style="background-color: #FFFF00;"></div>
+            <div class="color-box" style="background-color: #FF00FF;"></div>
+            <div class="color-box" style="background-color: #00FFFF;"></div>
+            <div class="color-box" style="background-color: #FF5733;"></div> <!-- Rouge -->
+            <div class="color-box" style="background-color: #33FF57;"></div> <!-- Vert -->
+            <div class="color-box" style="background-color: #5733FF;"></div> <!-- Bleu -->
+            <div class="color-box" style="background-color: #F1C40F;"></div> <!-- Jaune -->
+            <div class="color-box" style="background-color: #E91E63;"></div> <!-- Rose -->
+            <div class="color-box" style="background-color: #1ABC9C;"></div> <!-- Turquoise -->
+        </div>
+
+        <!-- Bouton Réinitialiser -->
+        <button id="resetButton">Réinitialiser le canevas</button>
+
+        <!-- Bouton Télécharger -->
+        <button id="downloadButton">Télécharger l'image</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* Reset des marges et des paddings pour une mise en page propre */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Logo Pexelle */
+.logo {
+    max-width: 200px; /* Largeur maximale du logo */
+    margin: 20px auto; /* Marge pour espacer du haut et centrer */
+    display: block; /* Affichage en bloc pour le centrer */
+}
+
+/* Titre stylé avec la police Pacifico */
+#title {
+    font-family: 'Pacifico', cursive; /* Police Pacifico */
+    font-size: 50px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style général de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Style du canevas - Taille 800x800 pixels */
+#pixel-canvas {
+    border: 1px solid black;
+    margin: 20px 0;
+    width: 800px;
+    height: 800px;
+}
+
+/* Palette de couleurs */
+.color-palette {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.color-box {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+button {
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#downloadButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#resetButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
