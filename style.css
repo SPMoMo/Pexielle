@@ -1,115 +1,94 @@
+/* Style général */
 body {
     font-family: 'Pacifico', sans-serif;
     text-align: center;
-    background-color: #f5f5f5;
+    background-color: #e0f7fa; /* Couleur douce pour Noël */
+    background-image: url('christmas-background.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
+/* Logo Pexielle */
+#title {
+    font-size: 40px;
+    margin: 20px 0;
+    font-family: 'Pacifico', cursive;
+    color: red; /* Couleur festive */
+}
+
+/* Conteneur du canevas */
 .container {
-    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#pixel-canvas {
-    border: 1px solid #000;
-    margin-bottom: 20px;
+/* Conteneur autour du canevas */
+.canvas-wrapper {
+    position: relative;
+    display: inline-block;
+    border: 5px solid black; /* Contour noir épais autour du canevas */
 }
 
+/* Palette de couleurs */
 .color-palette {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    margin-top: 20px;
 }
 
+/* Boîtes de couleur dans la palette */
 .color-box {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border-radius: 5px;  /* Coins arrondis */
 }
 
+/* Boutons */
 button {
-    margin: 10px;
     padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    margin: 10px;
     cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
+/* Bouton Réinitialiser avec thème Noël */
 #resetButton {
     background-color: red;
+    color: white;
+    border: 2px solid white;
 }
 
 #resetButton:hover {
-    background-color: #ff3333;
+    background-color: darkred;
 }
 
-.chat-wrapper {
+/* Bouton Télécharger avec thème Noël */
+#downloadButton {
+    background-color: green;
+    color: white;
+    border: 2px solid white;
+}
+
+#downloadButton:hover {
+    background-color: darkgreen;
+}
+
+/* Sélecteur de langue */
+.language-selector {
     position: absolute;
     top: 10px;
-    left: 10px;
-    display: flex;
-    align-items: flex-start;
+    right: 10px;
+    z-index: 10;
 }
 
-.chat-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none; /* Chat fermé par défaut */
-}
-
-.chat-messages {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 10px;
+#languageSelect {
     padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-#chatInput {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#sendMessageButton {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    font-size: 14px;
     cursor: pointer;
-}
-
-#sendMessageButton:hover {
-    background-color: #0056b3;
-}
-
-/* Style pour le bouton CHAT */
-#chatButton {
-    margin-left: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-#chatButton:hover {
-    background-color: #0056b3;
 }
