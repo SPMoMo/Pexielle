@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pexelle - Pixel Art</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Pexielle - Pixel Art</title>
+
+    <!-- Ajouter la police "Bryndan Write" -->
+    <link href="https://fonts.googleapis.com/css2?family=Bryndan+Write&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Logo Pexelle -->
-    <img src="Pexelle/pexelle-logo.png" alt="Logo Pexelle" class="logo">
+    <img src="Pexielle.png" alt="Logo Pexielle" class="logo">
 
-    <!-- Titre -->
-    <h1 id="title">PEXELLE</h1>
+    <!-- Titre avec la police "Bryndan Write" -->
+    <h1 id="title" style="font-family: 'Bryndan Write', cursive;">Pexielle</h1>
 
     <div class="container">
         <!-- Canevas pour dessiner les pixels -->
@@ -45,8 +48,111 @@
 
         <!-- Bouton Télécharger -->
         <button id="downloadButton">Télécharger l'image</button>
+
+        <!-- Wrapper pour le chat et le bouton -->
+        <div class="chat-wrapper">
+            <!-- Bouton pour ouvrir/fermer le chat -->
+            <button id="chatButton">CHAT</button>
+
+            <!-- Section Chat -->
+            <div class="chat-container" id="chatContainer">
+                <h2>Chat en Direct</h2>
+                <div id="chatMessages" class="chat-messages"></div>
+                <input type="text" id="chatInput" placeholder="Entrez votre message..." />
+                <button id="sendMessageButton">Envoyer</button>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Ajouter le SDK Firebase -->
+    <script type="module">
+        // Importer les fonctions nécessaires des SDK Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCHxODj6yH9HR_VOdDL46hpXCc1Q-vT4ZA",
+            authDomain: "pexielle.firebaseapp.com",
+            projectId: "pexielle",
+            storageBucket: "pexielle.firebasestorage.app",
+            messagingSenderId: "1044250169185",
+            appId: "1:1044250169185:web:05cab0fc4a40f9ffdc3f20",
+            measurementId: "G-WZ016J7KNG"
+        };
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Gérer l'envoi et l'affichage des messages du chat
+        const sendMessageButton = document.getElementById("sendMessageButton");
+        const chatInput = document.getElementById("chatInput");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatContainer = document.getElementById("chatContainer");
+        const chatButton = document.getElementById("chatButton");
+
+        // Ouvrir ou fermer le chat en cliquant sur le bouton
+        chatButton.addEventListener("click", function() {
+            if (chatContainer.style.display === "none") {
+                chatContainer.style.display = "block";
+            } else {
+                chatContainer.style.display = "none";
+            }
+        });
+
+        // Envoi du message avec "Entrée" ou bouton "Envoyer"
+        sendMessageButton.addEventListener("click", sendMessage);
+        chatInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                try {
+                    // Ajouter le message dans la collection Firestore
+                    addDoc(collection(db, "messages"), {
+                        text: message,
+                        timestamp: new Date()
+                    });
+                    chatInput.value = ''; // Réinitialiser le champ de saisie
+                } catch (error) {
+                    console.error("Erreur d'envoi du message : ", error);
+                }
+            }
+        }
+
+        // Afficher les messages en temps réel et les supprimer après 1 minute
+        const q = query(collection(db, "messages"), orderBy("timestamp"));
+        onSnapshot(q, (snapshot) => {
+            chatMessages.innerHTML = ''; // Effacer les anciens messages
+            snapshot.forEach((doc) => {
+                const message = doc.data().text;
+                const messageDiv = document.createElement("div");
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+
+                // Supprimer le message après 1 minute
+                setTimeout(() => {
+                    deleteMessage(doc.id);
+                }, 60000); // 60000 ms = 1 minute
+            });
+        });
+
+        // Supprimer un message
+        async function deleteMessage(id) {
+            try {
+                await deleteDoc(doc(db, "messages", id));
+            } catch (error) {
+                console.error("Erreur lors de la suppression du message : ", error);
+            }
+        }
+    </script>
+
+    <!-- Le script pour gérer le canevas de dessin -->
+    <script src="script.js" type="module"></script>
 </body>
 </html>
