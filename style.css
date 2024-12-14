@@ -1,6 +1,6 @@
 /* Style général */
 body {
-    font-family: 'Pacifico', sans-serif;
+    font-family: 'Bryan Write', sans-serif;
     text-align: center;
     background-color: #e0f7fa; /* Couleur douce pour Noël */
     background-image: url('christmas-background.jpg');
@@ -12,8 +12,16 @@ body {
 #title {
     font-size: 40px;
     margin: 20px 0;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Bryan Write', cursive;
     color: red; /* Couleur festive */
+    opacity: 0;
+    animation: fadeInTitle 2s forwards 1s; /* Animation d'apparition */
+}
+
+@keyframes fadeInTitle {
+    to {
+        opacity: 1;
+    }
 }
 
 /* Conteneur du canevas */
@@ -28,6 +36,31 @@ body {
     position: relative;
     display: inline-block;
     border: 5px solid black; /* Contour noir épais autour du canevas */
+    animation: slideUp 1s ease-out; /* Animation du canevas qui glisse */
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Logo Pexielle */
+.logo {
+    width: 150px;  /* Taille du logo */
+    height: auto;  /* Conserver les proportions du logo */
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Effet d'agrandissement du logo au survol */
+.logo:hover {
+    transform: scale(1.1);
 }
 
 /* Palette de couleurs */
@@ -38,13 +71,28 @@ body {
     margin-top: 20px;
 }
 
-/* Boîtes de couleur dans la palette */
+/* Animation des boîtes de couleurs */
 .color-box {
     width: 40px;
     height: 40px;
     margin: 5px;
     cursor: pointer;
     border-radius: 5px;  /* Coins arrondis */
+    animation: bounceIn 0.8s ease forwards; /* Animation de rebond pour chaque couleur */
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Boutons */
@@ -55,6 +103,12 @@ button {
     font-size: 16px;
     border: none;
     border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Animation des boutons */
+button:hover {
+    transform: translateY(-5px);
 }
 
 /* Bouton Réinitialiser avec thème Noël */
