@@ -96,6 +96,18 @@ const languageSelect = document.getElementById("languageSelect");
 
 // Traductions disponibles
 const translations = {
+    fr: {
+        title: "Pexielle",
+        reset: "Réinitialiser le Canevas",
+        download: "Télécharger l'Image",
+        sizeLabel: "Sélectionnez la taille du canevas:",
+    },
+    tr: {
+        title: "Pexielle",
+        reset: "Tuvali sıfırla",
+        download: "Resmi İndir",
+        sizeLabel: "Tuval boyutunu seçin:",
+    },
     en: {
         title: "Pexielle",
         reset: "Reset Canvas",
@@ -120,6 +132,18 @@ const translations = {
         download: "Scarica immagine",
         sizeLabel: "Seleziona la dimensione della tela:",
     },
+    pt: {
+        title: "Pexielle",
+        reset: "Redefinir Tela",
+        download: "Baixar Imagem",
+        sizeLabel: "Selecione o Tamanho da Tela:",
+    },
+    ar: {
+        title: "Pexielle",
+        reset: "إعادة تعيين قماش",
+        download: "تحميل الصورة",
+        sizeLabel: "حدد حجم القماش:",
+    },
 };
 
 // Gestion des changements de langue
@@ -129,4 +153,12 @@ languageSelect.addEventListener("change", function(event) {
     document.getElementById("resetButton").textContent = translations[lang].reset;
     document.getElementById("downloadButton").textContent = translations[lang].download;
     document.querySelector(".canvas-size label").textContent = translations[lang].sizeLabel;
+});
+
+// Le JavaScript pour l'effet de survol reste simple pour appliquer la transition de couleur
+const selectElements = document.querySelectorAll('select');
+selectElements.forEach(select => {
+  select.addEventListener('mouseenter', () => {
+    // L'effet est directement appliqué par le CSS
+  });
 });
