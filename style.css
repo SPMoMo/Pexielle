@@ -153,17 +153,16 @@ select {
     font-size: 16px;
     border-radius: 8px;
     border: 2px solid #3498db;
-    background-color: #ecf0f1;
-    color: #34495e;
+    background-color: #ecf0f1; /* Couleur de fond initiale */
+    color: #34495e; /* Couleur du texte initiale */
     cursor: pointer;
     position: relative; /* Positionnement pour que l'animation fonctionne correctement */
     z-index: 1; /* Le select sera au-dessus de tout autre élément */
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  /* Effet de survol pour le select */
-  select:hover {
-    background-color: #3498db;
-    color: white;
-  }
-  
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transitions définies */
+}
+
+/* Effet de survol pour le select */
+select:hover {
+    background-color: #3498db; /* Nouvelle couleur de fond au survol */
+    color: white; /* Nouvelle couleur du texte au survol */
+}
