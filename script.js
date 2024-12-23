@@ -33,10 +33,12 @@ canvas.addEventListener("mousedown", function(event) {
     drawPixel(event);
 });
 
+// Désactiver le dessin lors du relâchement du clic
 canvas.addEventListener("mouseup", function() {
     isMouseDown = false;
 });
 
+// Dessiner lors du déplacement de la souris
 canvas.addEventListener("mousemove", function(event) {
     if (isMouseDown) {
         drawPixel(event);
@@ -108,6 +110,12 @@ const translations = {
         download: "Resmi İndir",
         sizeLabel: "Tuval boyutunu seçin:",
     },
+    sv: {
+        title: "Pexielle",
+        reset: "Återställ duk",
+        download: "Ladda ner bild",
+        sizeLabel: "Välj dukstorlek:",
+    },
     en: {
         title: "Pexielle",
         reset: "Reset Canvas",
@@ -138,11 +146,47 @@ const translations = {
         download: "Baixar Imagem",
         sizeLabel: "Selecione o Tamanho da Tela:",
     },
+    nl: {
+        title: "Pexielle",
+        reset: "Canvas resetten",
+        download: "Afbeelding downloaden",
+        sizeLabel: "Selecteer canvassize:",
+    },
     ar: {
         title: "Pexielle",
         reset: "إعادة تعيين قماش",
         download: "تحميل الصورة",
         sizeLabel: "حدد حجم القماش:",
+    },
+    hi: {
+        title: "Pexielle",
+        reset: "कैनवास रीसेट करें",
+        download: "छवि डाउनलोड करें",
+        sizeLabel: "कैनवास का आकार चुनें:",
+    },
+    ja: {
+        title: "Pexielle",
+        reset: "キャンバスをリセット",
+        download: "画像をダウンロード",
+        sizeLabel: "キャンバスサイズを選択：",
+    },
+    ko: {
+        title: "Pexielle",
+        reset: "캔버스 재설정",
+        download: "이미지 다운로드",
+        sizeLabel: "캔버스 크기 선택:",
+    },
+    zh: {
+        title: "Pexielle",
+        reset: "重置画布",
+        download: "下载图片",
+        sizeLabel: "选择画布大小：",
+    },
+    ru: {
+        title: "Pexielle",
+        reset: "Сбросить холст",
+        download: "Скачать изображение",
+        sizeLabel: "Выберите размер холста:",
     },
 };
 
@@ -162,3 +206,37 @@ selectElements.forEach(select => {
     // L'effet est directement appliqué par le CSS
   });
 });
+
+// Vérifie si le consentement a déjà été donné
+if (!localStorage.getItem('cookies_accepted')) {
+    document.getElementById('cookie-consent-banner').style.display = 'block';
+}
+
+document.getElementById('accept-cookies').addEventListener('click', function() {
+    // Enregistre le consentement dans le stockage local
+    localStorage.setItem('cookies_accepted', 'true');
+    // Cache le bandeau
+    document.getElementById('cookie-consent-banner').style.display = 'none';
+    // Définir les cookies
+    setCookies();
+});
+
+document.getElementById('reject-cookies').addEventListener('click', function() {
+    // Cache le bandeau sans accepter
+    document.getElementById('cookie-consent-banner').style.display = 'none';
+    // Refuser les cookies (en ne les définissant pas)
+    rejectCookies();
+});
+
+
+// Fonctions pour définir et refuser les cookies
+function setCookies() {
+    // Exemple de cookie à définir
+    document.cookie = "user_accepted_cookies=true; path=/; max-age=" + 60 * 60 * 24 * 365;  // Durée 1 an
+}
+
+function rejectCookies() {
+    // Vous pouvez également ajouter une logique pour empêcher l'utilisation de cookies
+    // par exemple, en supprimant les cookies existants ou en ne définissant aucun cookie
+    console.log('Les cookies sont refusés.');
+}

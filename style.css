@@ -8,6 +8,13 @@ body {
     background-position: center;
 }
 
+/* Style du titre */
+h1 {
+    font-size: 30px;
+    margin: 20px 0;
+    color: red; /* Couleur festive */
+}
+
 /* Logo Pexielle */
 #title {
     font-size: 40px;
@@ -18,6 +25,8 @@ body {
     animation: fadeInTitle 2s forwards 1s; /* Animation d'apparition */
 }
 
+
+/* Animation d'apparition du titre */
 @keyframes fadeInTitle {
     to {
         opacity: 1;
@@ -153,16 +162,73 @@ select {
     font-size: 16px;
     border-radius: 8px;
     border: 2px solid #3498db;
-    background-color: #ecf0f1; /* Couleur de fond initiale */
-    color: #34495e; /* Couleur du texte initiale */
+    background-color: #ecf0f1;
+    color: #34495e;
     cursor: pointer;
     position: relative; /* Positionnement pour que l'animation fonctionne correctement */
     z-index: 1; /* Le select sera au-dessus de tout autre élément */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transitions définies */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Effet de survol pour le select */
+  select:hover {
+    background-color: #3498db;
+    color: white;
+  }
+
+/* Style du bandeau de consentement */
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    display: none; /* Par défaut, le bandeau est caché */
 }
 
-/* Effet de survol pour le select */
-select:hover {
-    background-color: #3498db; /* Nouvelle couleur de fond au survol */
-    color: white; /* Nouvelle couleur du texte au survol */
+.cookie-consent-banner p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.cookie-consent-banner button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cookie-consent-banner button:hover {
+    background-color: #45a049;
+}
+
+.cookie-consent-banner button:focus {
+    outline: none;
+}
+
+/* Animation d'apparition du bandeau de consentement */
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Animation de disparition du bandeau de consentement */
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
 }
