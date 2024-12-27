@@ -204,11 +204,9 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
       
         // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
           apiKey: "AIzaSyCHxODj6yH9HR_VOdDL46hpXCc1Q-vT4ZA",
           authDomain: "pexielle.firebaseapp.com",
@@ -222,7 +220,56 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-      </script>
+        const auth = getAuth();
+
+        // Google sign-in
+        const provider = new GoogleAuthProvider();
+        document.getElementById('google-sign-in').addEventListener('click', () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    document.getElementById('user-info').innerHTML = `
+                        <p>Bienvenue, ${user.displayName}</p>
+                        <label for="username">Pseudo:</label>
+                        <input type="text" id="username" placeholder="Entrez votre pseudo">
+                        <button id="save-username">Enregistrer</button>
+                    `;
+                    document.getElementById('save-username').addEventListener('click', () => {
+                        const username = document.getElementById('username').value;
+                        alert(`Pseudo enregistré: ${username}`);
+                    });
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Sign out
+        document.getElementById('sign-out').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                document.getElementById('user-info').innerHTML = '';
+                alert('Déconnecté');
+            });
+        });
+
+        // Check auth state
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('user-info').innerHTML = `
+                    <p>Bienvenue, ${user.displayName}</p>
+                    <label for="username">Pseudo:</label>
+                    <input type="text" id="username" placeholder="Entrez votre pseudo">
+                    <button id="save-username">Enregistrer</button>
+                `;
+                document.getElementById('save-username').addEventListener('click', () => {
+                    const username = document.getElementById('username').value;
+                    alert(`Pseudo enregistré: ${username}`);
+                });
+            } else {
+                document.getElementById('user-info').innerHTML = '';
+            }
+        });
+    </script>
     <script src="script.js" type="module"></script>
 </body>
 </html>

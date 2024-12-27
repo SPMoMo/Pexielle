@@ -261,40 +261,51 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 // Récupérer le bouton Google
 document.getElementById('google-sign-in').addEventListener('click', () => {
-  // Connexion via popup avec Google
-  firebase.auth().signInWithPopup(googleProvider)
-    .then((result) => {
-      // L'utilisateur est connecté avec succès
-      const user = result.user;
-      console.log('Utilisateur connecté avec Google:', user);
+    // Connexion via popup avec Google
+    firebase.auth().signInWithPopup(googleProvider)
+        .then((result) => {
+            // L'utilisateur est connecté avec succès
+            const user = result.user;
+            console.log('Utilisateur connecté avec Google:', user);
 
-      // Exemple : afficher le nom de l'utilisateur
-      document.getElementById('user-info').textContent = `Bienvenue, ${user.displayName}`;
-    })
-    .catch((error) => {
-      // Gestion des erreurs
-      console.error('Erreur de connexion avec Google:', error.message);
-    });
+            // Demander à l'utilisateur de saisir un pseudo
+            const pseudo = prompt("Veuillez entrer un pseudo:");
+            if (pseudo) {
+                // Mettre à jour le profil de l'utilisateur avec le pseudo
+                user.updateProfile({
+                    displayName: pseudo
+                }).then(() => {
+                    // Afficher le pseudo de l'utilisateur
+                    document.getElementById('user-info').textContent = `Bienvenue, ${user.displayName}`;
+                }).catch((error) => {
+                    console.error('Erreur lors de la mise à jour du pseudo:', error.message);
+                });
+            }
+        })
+        .catch((error) => {
+            // Gestion des erreurs
+            console.error('Erreur de connexion avec Google:', error.message);
+        });
 });
 
 // Vérifier l'état de l'authentification de l'utilisateur
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      // L'utilisateur est connecté
-      console.log('Utilisateur connecté:', user);
-      document.getElementById('user-info').textContent = `Bienvenue, ${user.displayName}`;
+        // L'utilisateur est connecté
+        console.log('Utilisateur connecté:', user);
+        document.getElementById('user-info').textContent = `Bienvenue, ${user.displayName}`;
     } else {
-      // L'utilisateur n'est pas connecté
-      console.log('Aucun utilisateur connecté');
+        // L'utilisateur n'est pas connecté
+        console.log('Aucun utilisateur connecté');
     }
-  });
+});
 
 // Déconnexion de l'utilisateur
-  document.getElementById('sign-out').addEventListener('click', () => {
+document.getElementById('sign-out').addEventListener('click', () => {
     firebase.auth().signOut().then(() => {
-      console.log('Utilisateur déconnecté');
-      document.getElementById('user-info').textContent = ''; // Effacer les infos utilisateur
+        console.log('Utilisateur déconnecté');
+        document.getElementById('user-info').textContent = ''; // Effacer les infos utilisateur
     }).catch((error) => {
-      console.error('Erreur lors de la déconnexion:', error);
+        console.error('Erreur lors de la déconnexion:', error);
     });
-  });
+});
