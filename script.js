@@ -93,6 +93,10 @@ downloadButton.addEventListener("click", function() {
     link.click();
 });
 
+// Gestion du pied de page
+const currentYear = new Date().getFullYear();
+document.getElementById("footer").innerHTML = `&copy; ${currentYear} Pexielle. Tous droits réservés.`;
+
 // Gestion du sélecteur de langue
 const languageSelect = document.getElementById("languageSelect");
 
@@ -212,6 +216,7 @@ languageSelect.addEventListener("change", function(event) {
     document.getElementById("resetButton").textContent = translations[lang].reset;
     document.getElementById("downloadButton").textContent = translations[lang].download;
     document.querySelector(".canvas-size label").textContent = translations[lang].sizeLabel;
+    document.getElementById("footer").innerHTML = translations[lang].footer;
 });
 
 // Le JavaScript pour l'effet de survol reste simple pour appliquer la transition de couleur
@@ -255,3 +260,56 @@ function rejectCookies() {
     // par exemple, en supprimant les cookies existants ou en ne définissant aucun cookie
     console.log('Les cookies sont refusés.');
 }
+
+// Historique des actions pour annuler/refaire
+let history = [];
+let historyIndex = -1;
+
+// Fonction pour sauvegarder l'état actuel du canevas
+function saveState() {
+    if (historyIndex < history.length - 1) {
+        history = history.slice(0, historyIndex + 1);
+    }
+    history.push(canvas.toDataURL());
+    historyIndex++;
+    updateUndoRedoButtons();
+}
+
+// Mettre à jour l'état des boutons Annuler/Refaire
+function updateUndoRedoButtons() {
+    document.getElementById("undoButton").disabled = historyIndex <= 0;
+    document.getElementById("redoButton").disabled = historyIndex >= history.length - 1;
+}
+
+// Annuler la dernière action
+document.getElementById("undoButton").addEventListener("click", function() {
+    if (historyIndex > 0) {
+        historyIndex--;
+        restoreState();
+    }
+});
+
+// Refaire l'action annulée
+document.getElementById("redoButton").addEventListener("click", function() {
+    if (historyIndex < history.length - 1) {
+        historyIndex++;
+        restoreState();
+    }
+});
+
+// Restaurer l'état du canevas à partir de l'historique
+function restoreState() {
+    const img = new Image();
+    img.src = history[historyIndex];
+    img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+    };
+    updateUndoRedoButtons();
+}
+
+// Sauvegarder l'état initial
+saveState();
+
+// Sauvegarder l'état après chaque dessin
+canvas.addEventListener("mouseup", saveState);
