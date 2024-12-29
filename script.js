@@ -29,6 +29,7 @@ let isMouseDown = false;
 
 // Activer le dessin lors du clic
 canvas.addEventListener("mousedown", function(event) {
+    if (isAddingText) return;
     isMouseDown = true;
     drawPixel(event);
 });
@@ -108,6 +109,12 @@ const translations = {
         download: "Télécharger l'Image",
         sizeLabel: "Sélectionnez la taille du canevas:",
         footer: "&copy; 2024 Pexielle. Tous droits réservés.",
+        undoButton: "Annuler",
+        redoButton: "Refaire",
+        imageInput: "Ajouter une Image:",
+        textInput: "Ajouter un Texte:",
+        addTextButton: "Ajouter le Texte",
+        textInputplaceholder: "Entrez votre texte ici",
     },
     tr: {
         title: "Pexielle",
@@ -115,6 +122,12 @@ const translations = {
         download: "Resmi İndir",
         sizeLabel: "Tuval boyutunu seçin:",
         footer: "&copy; 2024 Pexielle. Tüm hakları saklıdır.",
+        undoButton: "Geri Al",
+        redoButton: "Yeniden Yap",
+        imageInput: "Resim Ekle:",
+        textInput: "Metin Ekle:",
+        addTextButton: "Metni Ekle",
+        textInputplaceholder: "Metninizi buraya girin",
     },
     sv: {
         title: "Pexielle",
@@ -122,6 +135,12 @@ const translations = {
         download: "Ladda ner bild",
         sizeLabel: "Välj dukstorlek:",
         footer: "&copy; 2024 Pexielle. Alla rättigheter förbehållna.",
+        undoButton: "Ångra",
+        redoButton: "Gör om",
+        imageInput: "Lägg till bild:",
+        textInput: "Lägg till text:",
+        addTextButton: "Lägg till text",
+        textInputplaceholder: "Ange din text här",
     },
     en: {
         title: "Pexielle",
@@ -129,6 +148,12 @@ const translations = {
         download: "Download Image",
         sizeLabel: "Select Canvas Size:",
         footer: "&copy; 2024 Pexielle. All rights reserved.",
+        undoButton: "Undo",
+        redoButton: "Redo",
+        imageInput: "Add Image:",
+        textInput: "Add Text:",
+        addTextButton: "Add Text",
+        textInputplaceholder: "Enter your text here",
     },
     es: {
         title: "Pexielle",
@@ -136,6 +161,12 @@ const translations = {
         download: "Descargar imagen",
         sizeLabel: "Seleccionar tamaño del lienzo:",
         footer: "&copy; 2024 Pexielle. Todos los derechos reservados.",
+        undoButton: "Deshacer",
+        redoButton: "Rehacer",
+        imageInput: "Agregar imagen:",
+        textInput: "Agregar texto:",
+        addTextButton: "Agregar texto",
+        textInputplaceholder: "Ingrese su texto aquí",
     },
     de: {
         title: "Pexielle",
@@ -143,6 +174,12 @@ const translations = {
         download: "Bild herunterladen",
         sizeLabel: "Leinwandgröße auswählen:",
         footer: "&copy; 2024 Pexielle. Alle Rechte vorbehalten.",
+        undoButton: "Rückgängig machen",
+        redoButton: "Wiederholen",
+        imageInput: "Bild hinzufügen:",
+        textInput: "Text hinzufügen:",
+        addTextButton: "Text hinzufügen",
+        textInputplaceholder: "Geben Sie hier Ihren Text ein",
     },
     it: {
         title: "Pexielle",
@@ -150,6 +187,12 @@ const translations = {
         download: "Scarica immagine",
         sizeLabel: "Seleziona la dimensione della tela:",
         footer: "&copy; 2024 Pexielle. Tutti i diritti riservati.",
+        undoButton: "Annulla",
+        redoButton: "Rifare",
+        imageInput: "Aggiungi immagine:",
+        textInput: "Aggiungi testo:",
+        addTextButton: "Aggiungi testo",
+        textInputplaceholder: "Inserisci il tuo testo qui",
     },
     pt: {
         title: "Pexielle",
@@ -157,6 +200,12 @@ const translations = {
         download: "Baixar Imagem",
         sizeLabel: "Selecione o Tamanho da Tela:",
         footer: "&copy; 2024 Pexielle. Todos os direitos reservados.",
+        undoButton: "Desfazer",
+        redoButton: "Refazer",
+        imageInput: "Adicionar Imagem:",
+        textInput: "Adicionar Texto:",
+        addTextButton: "Adicionar Texto",
+        textInputplaceholder: "Insira seu texto aqui",
     },
     nl: {
         title: "Pexielle",
@@ -164,6 +213,12 @@ const translations = {
         download: "Afbeelding downloaden",
         sizeLabel: "Selecteer canvassize:",
         footer: "&copy; 2024 Pexielle. Alle rechten voorbehouden.",
+        undoButton: "Ongedaan maken",
+        redoButton: "Opnieuw doen",
+        imageInput: "Afbeelding toevoegen:",
+        textInput: "Tekst toevoegen:",
+        addTextButton: "Tekst toevoegen",
+        textInputplaceholder: "Voer hier uw tekst in",
     },
     ar: {
         title: "Pexielle",
@@ -171,6 +226,12 @@ const translations = {
         download: "تحميل الصورة",
         sizeLabel: "حدد حجم القماش:",
         footer: "&copy; 2024 Pexielle. كل الحقوق محفوظة.",
+        undoButton: "تراجع",
+        redoButton: "إعادة",
+        imageInput: "إضافة صورة:",
+        textInput: "إضافة نص:",
+        addTextButton: "إضافة نص",
+        textInputplaceholder: "أدخل نصك هنا",
     },
     hi: {
         title: "Pexielle",
@@ -178,13 +239,25 @@ const translations = {
         download: "छवि डाउनलोड करें",
         sizeLabel: "कैनवास का आकार चुनें:",
         footer: "&copy; 2024 Pexielle. सभी अधिकार सुरक्षित हैं।",
+        undoButton: "पूर्ववत करें",
+        redoButton: "फिर से करें",
+        imageInput: "छवि जोड़ें:",
+        textInput: "पाठ जोड़ें:",
+        addTextButton: "पाठ जोड़ें",
+        textInputplaceholder: "यहाँ अपना पाठ दर्ज करें",
     },
     ja: {
         title: "Pexielle",
         reset: "キャンバスをリセット",
         download: "画像をダウンロード",
         sizeLabel: "キャンバスサイズを選択：",
-        footer: "&copy; 2024 Pexielle. All rights reserved.",
+        footer: "&copy; 2024 Pexielle. すべての権利を保有しています。",
+        undoButton: "元に戻す",
+        redoButton: "やり直す",
+        imageInput: "画像を追加:",
+        textInput: "テキストを追加:",
+        addTextButton: "テキストを追加",
+        textInputplaceholder: "ここにテキストを入力してください",
     },
     ko: {
         title: "Pexielle",
@@ -192,6 +265,12 @@ const translations = {
         download: "이미지 다운로드",
         sizeLabel: "캔버스 크기 선택:",
         footer: "&copy; 2024 Pexielle. 모든 권리 보유.",
+        undoButton: "실행 취소",
+        redoButton: "다시 실행",
+        imageInput: "이미지 추가:",
+        textInput: "텍스트 추가:",
+        addTextButton: "텍스트 추가",
+        textInputplaceholder: "여기에 텍스트 입력",
     },
     zh: {
         title: "Pexielle",
@@ -199,6 +278,12 @@ const translations = {
         download: "下载图片",
         sizeLabel: "选择画布大小：",
         footer: "&copy; 2024 Pexielle. 版權所有。",
+        undoButton: "撤消",
+        redoButton: "重做",
+        imageInput: "添加图片:",
+        textInput: "添加文本:",
+        addTextButton: "添加文本",
+        textInputplaceholder: "在此输入您的文本",
     },
     ru: {
         title: "Pexielle",
@@ -206,6 +291,12 @@ const translations = {
         download: "Скачать изображение",
         sizeLabel: "Выберите размер холста:",
         footer: "&copy; 2024 Pexielle. Все права защищены.",
+        undoButton: "Отменить",
+        redoButton: "Повторить",
+        imageInput: "Добавить изображение:",
+        textInput: "Добавить текст:",
+        addTextButton: "Добавить текст",
+        textInputplaceholder: "Введите ваш текст здесь",
     },
 };
 
@@ -217,6 +308,12 @@ languageSelect.addEventListener("change", function(event) {
     document.getElementById("downloadButton").textContent = translations[lang].download;
     document.querySelector(".canvas-size label").textContent = translations[lang].sizeLabel;
     document.getElementById("footer").innerHTML = translations[lang].footer;
+    document.getElementById("undoButton").textContent = translations[lang].undoButton;
+    document.getElementById("redoButton").textContent = translations[lang].redoButton;
+    document.querySelector("label[for='imageInput']").textContent = translations[lang].imageInput;
+    document.querySelector("label[for='textInput']").textContent = translations[lang].textInput;
+    document.getElementById("addTextButton").textContent = translations[lang].addTextButton;
+    document.getElementById("textInput").placeholder = translations[lang].textInputplaceholder;
 });
 
 // Le JavaScript pour l'effet de survol reste simple pour appliquer la transition de couleur
@@ -331,4 +428,91 @@ imageInput.addEventListener("change", function(event) {
         };
         reader.readAsDataURL(file);
     }
+});
+
+// Ajouter un texte sur le canevas
+const addTextButton = document.getElementById("addTextButton");
+let isAddingText = false;
+
+addTextButton.addEventListener("click", function() {
+    const textInput = document.getElementById("textInput").value;
+    if (textInput) {
+        isAddingText = true;
+        canvas.style.cursor = "crosshair";
+    }
+});
+
+canvas.addEventListener("click", function(event) {
+    if (isAddingText) {
+        const x = event.offsetX;
+        const y = event.offsetY;
+        const textInput = document.getElementById("textInput").value;
+        ctx.fillStyle = currentColor;
+        ctx.font = `${pixelSize * 2}px Arial`;
+        ctx.fillText(textInput, x, y);
+        saveState(); // Sauvegarder l'état après l'ajout du texte
+        isAddingText = false;
+        canvas.style.cursor = "default";
+    }
+});
+
+canvas.addEventListener("mousedown", function(event) {
+    if (!isAddingText) {
+        isMouseDown = true;
+        drawPixel(event);
+    }
+});
+// Ajouter une indication visuelle pour l'ajout de texte
+const tooltip = document.createElement("div");
+tooltip.style.position = "absolute";
+tooltip.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+tooltip.style.color = "#fff";
+tooltip.style.padding = "5px";
+tooltip.style.borderRadius = "3px";
+tooltip.style.pointerEvents = "none";
+tooltip.style.display = "none";
+tooltip.textContent = "Cliquez pour ajouter le texte sur le canevas";
+document.body.appendChild(tooltip);
+
+canvas.addEventListener("mousemove", function(event) {
+    if (isAddingText) {
+        tooltip.style.left = event.pageX + 10 + "px";
+        tooltip.style.top = event.pageY + 10 + "px";
+        tooltip.style.display = "block";
+    } else {
+        tooltip.style.display = "none";
+    }
+});
+document.addEventListener("mousemove", function(event) {
+    if (isAddingText) {
+        tooltip.style.left = event.pageX + 10 + "px";
+        tooltip.style.top = event.pageY + 10 + "px";
+        tooltip.style.display = "block";
+    } else {
+        tooltip.style.display = "none";
+    }
+});
+// Traductions pour l'indication visuelle d'ajout de texte
+const tooltipTranslations = {
+    fr: "Cliquez pour ajouter le texte sur le canevas",
+    tr: "Metni tuvale eklemek için tıklayın",
+    sv: "Klicka för att lägga till text på duken",
+    en: "Click to add text to the canvas",
+    es: "Haga clic para agregar texto al lienzo",
+    de: "Klicken Sie, um Text auf die Leinwand hinzuzufügen",
+    it: "Clicca per aggiungere testo alla tela",
+    pt: "Clique para adicionar texto à tela",
+    nl: "Klik om tekst aan het canvas toe te voegen",
+    ar: "انقر لإضافة نص إلى القماش",
+    hi: "कैनवास पर टेक्स्ट जोड़ने के लिए क्लिक करें",
+    ja: "キャンバスにテキストを追加するにはクリックしてください",
+    ko: "캔버스에 텍스트를 추가하려면 클릭하세요",
+    zh: "点击以将文本添加到画布",
+    ru: "Нажмите, чтобы добавить текст на холст"
+};
+
+// Mettre à jour l'indication visuelle lors du changement de langue
+languageSelect.addEventListener("change", function(event) {
+    const lang = event.target.value;
+    tooltip.textContent = tooltipTranslations[lang];
 });
