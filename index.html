@@ -11,7 +11,7 @@
         script-src 'self' https://apis.google.com;
         style-src 'self' 'unsafe-inline';
         img-src 'self' data:;
-        font-src 'self';
+        font-src 'self' https://fonts.gstatic.com;
         connect-src 'self';
         frame-src 'none';
         object-src 'none';
@@ -55,15 +55,15 @@
 
         <!-- Ajouter une image sur le canevas -->
         <div class="add-image">
-            <label for="imageInput">Ajouter une image:</label>
+            <label for="imageInput">Ajouter une Image:</label>
             <input type="file" id="imageInput" accept="image/*">
         </div>
 
         <!-- Ajouter un texte sur le canevas -->
         <div class="add-text">
-            <label for="textInput">Ajouter un texte:</label>
+            <label for="textInput">Ajouter un Texte:</label>
             <input type="text" id="textInput" placeholder="Entrez votre texte ici">
-            <button id="addTextButton">Ajouter</button>
+            <button id="addTextButton">Ajouter le Texte</button>
         </div>
 
     <div class="container">
@@ -195,11 +195,19 @@
         </p>
     </div>
 
+    <!-- GitHub -->
+    <div class="github-link" style="text-align: center; margin-top: 20px;">
+        <a href="https://github.com/SPMoMo/pexielle" target="_blank" aria-label="View source on GitHub">
+            <svg width="40" height="40" viewBox="0 0 250 250" style="fill:#151513; color:#fff;" aria-hidden="true">
+                <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+                <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+                <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.5 127.5,75.4 143.8,59.0 C148.5,54.4 154.0,52.2 159.9,52.0 C160.3,50.6 163.2,44.6 171.4,41.7 C171.4,41.7 176.1,43.7 178.8,57.2 C183.1,59.6 187.2,62.8 190.9,66.5 C194.6,70.2 197.8,74.3 200.2,78.7 C213.6,81.4 215.6,86.1 215.6,86.1 C212.7,94.3 206.7,97.2 205.3,97.6 C205.0,103.5 203.0,108.9 198.3,113.6 C181.9,129.9 168.8,123.5 158.7,115.1 C158.9,117.9 157.8,122.4 153.2,127.0 C136.8,143.4 120.4,137.1 106.3,128.7 C105.1,124.1 106.5,120.3 106.6,120.2 L115.0,115.0 Z" fill="currentColor" class="octo-body"></path>
+            </svg>
+        </a>
+    </div>
+
     <!-- Pied de page -->
-    <div class="footer" id="footer"></div>
-    <div class="footer">
-        <p>
-            <a href="https://github.com/SPMoMo" target="_blank">Contact</a>
+    <div class="footer" id="footer">
         <p>
             &copy; 2024 Pexielle. Tous droits réservés.
         </p>

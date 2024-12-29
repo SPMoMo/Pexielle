@@ -326,3 +326,17 @@ select {
 .add-text button:hover {
     background-color: #2980b9;
 }
+
+/* Style du GitHub */
+.github-corner {
+    position: fixed;
+    top: 0;
+    right: 0;
+    border: 0;
+    z-index: 1000;
+}
+
+.github-corner img {
+    width: 80px;
+    height: 80px;
+}
