@@ -255,3 +255,31 @@ select {
     color: #7f8c8d;
     cursor: not-allowed;
 }
+
+/* Style pour l'ajout d'image */
+.add-image {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.add-image label {
+    font-size: 18px;
+    color: #34495e;
+    margin-right: 10px;
+}
+
+.add-image input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #34495e;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-image input[type="file"]:hover {
+    background-color: #3498db;
+    color: white;
+}

@@ -313,3 +313,22 @@ saveState();
 
 // Sauvegarder l'état après chaque dessin
 canvas.addEventListener("mouseup", saveState);
+canvas.addEventListener("touchend", saveState);
+
+// Ajouter une image sur le canevas
+const imageInput = document.getElementById("imageInput");
+imageInput.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                saveState(); // Sauvegarder l'état après l'ajout de l'image
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+});
