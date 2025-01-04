@@ -5,6 +5,10 @@ const ctx = canvas.getContext("2d");
 // Taille des pixels sur le canevas
 const pixelSize = 15;  // Taille de chaque pixel
 let rows, cols;
+// Forme par défaut du pinceau
+let brushShape = "square"; // Forme par défaut du pinceau
+let brushSize = 1; // Taille par défaut du pinceau
+let isAddingText = false; // Variable pour vérifier si l'utilisateur ajoute du texte
 
 // Fonction pour redimensionner le canevas
 function resizeCanvas() {
@@ -46,12 +50,36 @@ canvas.addEventListener("mousemove", function(event) {
     }
 });
 
-// Dessiner un pixel
+// Dessiner un pixel avec la taille et la forme du pinceau
 function drawPixel(event) {
     const x = Math.floor(event.offsetX / pixelSize);
     const y = Math.floor(event.offsetY / pixelSize);
     ctx.fillStyle = currentColor;
-    ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+
+    switch (brushShape) {
+        case "square":
+            ctx.fillRect(x * pixelSize, y * pixelSize, brushSize * pixelSize, brushSize * pixelSize);
+            break;
+        case "circle":
+            ctx.beginPath();
+            ctx.arc(x * pixelSize + pixelSize / 2, y * pixelSize + pixelSize / 2, brushSize * pixelSize / 2, 0, Math.PI * 2);
+            ctx.fill();
+            break;
+        case "triangle":
+            ctx.beginPath();
+            ctx.moveTo(x * pixelSize, y * pixelSize + brushSize * pixelSize);
+            ctx.lineTo(x * pixelSize + brushSize * pixelSize / 2, y * pixelSize);
+            ctx.lineTo(x * pixelSize + brushSize * pixelSize, y * pixelSize + brushSize * pixelSize);
+            ctx.closePath();
+            ctx.fill();
+            break;
+        case "star":
+            drawStar(ctx, x * pixelSize + brushSize * pixelSize / 2, y * pixelSize + brushSize * pixelSize / 2, 5, brushSize * pixelSize / 2, brushSize * pixelSize / 4);
+            break;
+        case "heart":
+            drawHeart(ctx, x * pixelSize, y * pixelSize, brushSize * pixelSize, brushSize * pixelSize);
+            break;
+    }
 }
 
 // Changer la couleur de peinture via le sélecteur de couleur
@@ -115,6 +143,8 @@ const translations = {
         textInput: "Ajouter un Texte:",
         addTextButton: "Ajouter le Texte",
         textInputplaceholder: "Entrez votre texte ici",
+        brushSizeLabel: "Sélectionnez la taille du pinceau:",
+        brushShapeLabel: "Sélectionnez la forme du pinceau:",
     },
     tr: {
         title: "Pexielle",
@@ -128,6 +158,8 @@ const translations = {
         textInput: "Metin Ekle:",
         addTextButton: "Metni Ekle",
         textInputplaceholder: "Metninizi buraya girin",
+        brushSizeLabel: "Fırça Boyutunu Seçin:",
+        brushShapeLabel: "Fırça Şeklini Seçin:",
     },
     sv: {
         title: "Pexielle",
@@ -141,6 +173,8 @@ const translations = {
         textInput: "Lägg till text:",
         addTextButton: "Lägg till text",
         textInputplaceholder: "Ange din text här",
+        brushSizeLabel: "Välj penselstorlek:",
+        brushShapeLabel: "Välj penselform:",
     },
     en: {
         title: "Pexielle",
@@ -154,6 +188,8 @@ const translations = {
         textInput: "Add Text:",
         addTextButton: "Add Text",
         textInputplaceholder: "Enter your text here",
+        brushSizeLabel: "Select Brush Size:",
+        brushShapeLabel: "Select Brush Shape:",
     },
     es: {
         title: "Pexielle",
@@ -167,6 +203,8 @@ const translations = {
         textInput: "Agregar texto:",
         addTextButton: "Agregar texto",
         textInputplaceholder: "Ingrese su texto aquí",
+        brushSizeLabel: "Seleccionar tamaño del pincel:",
+        brushShapeLabel: "Seleccionar forma del pincel:",
     },
     de: {
         title: "Pexielle",
@@ -180,6 +218,8 @@ const translations = {
         textInput: "Text hinzufügen:",
         addTextButton: "Text hinzufügen",
         textInputplaceholder: "Geben Sie hier Ihren Text ein",
+        brushSizeLabel: "Pinselgröße auswählen:",
+        brushShapeLabel: "Pinselform auswählen:",
     },
     it: {
         title: "Pexielle",
@@ -193,6 +233,8 @@ const translations = {
         textInput: "Aggiungi testo:",
         addTextButton: "Aggiungi testo",
         textInputplaceholder: "Inserisci il tuo testo qui",
+        brushSizeLabel: "Seleziona la dimensione del pennello:",
+        brushShapeLabel: "Seleziona la forma del pennello:",
     },
     pt: {
         title: "Pexielle",
@@ -206,6 +248,8 @@ const translations = {
         textInput: "Adicionar Texto:",
         addTextButton: "Adicionar Texto",
         textInputplaceholder: "Insira seu texto aqui",
+        brushSizeLabel: "Selecione o Tamanho do Pincel:",
+        brushShapeLabel: "Selecione a Forma do Pincel:",
     },
     nl: {
         title: "Pexielle",
@@ -219,6 +263,8 @@ const translations = {
         textInput: "Tekst toevoegen:",
         addTextButton: "Tekst toevoegen",
         textInputplaceholder: "Voer hier uw tekst in",
+        brushSizeLabel: "Selecteer penseelgrootte:",
+        brushShapeLabel: "Selecteer penseelvorm:",
     },
     ar: {
         title: "Pexielle",
@@ -232,6 +278,8 @@ const translations = {
         textInput: "إضافة نص:",
         addTextButton: "إضافة نص",
         textInputplaceholder: "أدخل نصك هنا",
+        brushSizeLabel: "حدد حجم الفرشاة:",
+        brushShapeLabel: "حدد شكل الفرشاة:",
     },
     hi: {
         title: "Pexielle",
@@ -245,6 +293,8 @@ const translations = {
         textInput: "पाठ जोड़ें:",
         addTextButton: "पाठ जोड़ें",
         textInputplaceholder: "यहाँ अपना पाठ दर्ज करें",
+        brushSizeLabel: "ब्रश का आकार चुनें:",
+        brushShapeLabel: "ब्रश का आकार चुनें:",
     },
     ja: {
         title: "Pexielle",
@@ -258,6 +308,8 @@ const translations = {
         textInput: "テキストを追加:",
         addTextButton: "テキストを追加",
         textInputplaceholder: "ここにテキストを入力してください",
+        brushSizeLabel: "ブラシサイズを選択：",
+        brushShapeLabel: "ブラシの形状を選択：",
     },
     ko: {
         title: "Pexielle",
@@ -271,6 +323,8 @@ const translations = {
         textInput: "텍스트 추가:",
         addTextButton: "텍스트 추가",
         textInputplaceholder: "여기에 텍스트 입력",
+        brushSizeLabel: "브러시 크기 선택:",
+        brushShapeLabel: "브러시 모양 선택:",
     },
     zh: {
         title: "Pexielle",
@@ -284,6 +338,8 @@ const translations = {
         textInput: "添加文本:",
         addTextButton: "添加文本",
         textInputplaceholder: "在此输入您的文本",
+        brushSizeLabel: "选择画笔大小：",
+        brushShapeLabel: "选择画笔形状：",
     },
     ru: {
         title: "Pexielle",
@@ -297,6 +353,8 @@ const translations = {
         textInput: "Добавить текст:",
         addTextButton: "Добавить текст",
         textInputplaceholder: "Введите ваш текст здесь",
+        brushSizeLabel: "Выберите размер кисти:",
+        brushShapeLabel: "Выберите форму кисти:",
     },
 };
 
@@ -314,6 +372,8 @@ languageSelect.addEventListener("change", function(event) {
     document.querySelector("label[for='textInput']").textContent = translations[lang].textInput;
     document.getElementById("addTextButton").textContent = translations[lang].addTextButton;
     document.getElementById("textInput").placeholder = translations[lang].textInputplaceholder;
+    document.querySelector(".brush-size label").textContent = translations[lang].brushSizeLabel;
+    document.querySelector(".brush-shape label").textContent = translations[lang].brushShapeLabel;
 });
 
 // Le JavaScript pour l'effet de survol reste simple pour appliquer la transition de couleur
@@ -432,8 +492,6 @@ imageInput.addEventListener("change", function(event) {
 
 // Ajouter un texte sur le canevas
 const addTextButton = document.getElementById("addTextButton");
-let isAddingText = false;
-
 addTextButton.addEventListener("click", function() {
     const textInput = document.getElementById("textInput").value;
     if (textInput) {
@@ -453,13 +511,6 @@ canvas.addEventListener("click", function(event) {
         saveState(); // Sauvegarder l'état après l'ajout du texte
         isAddingText = false;
         canvas.style.cursor = "default";
-    }
-});
-
-canvas.addEventListener("mousedown", function(event) {
-    if (!isAddingText) {
-        isMouseDown = true;
-        drawPixel(event);
     }
 });
 // Ajouter une indication visuelle pour l'ajout de texte
@@ -516,3 +567,57 @@ languageSelect.addEventListener("change", function(event) {
     const lang = event.target.value;
     tooltip.textContent = tooltipTranslations[lang];
 });
+
+// Gestion de la taille du pinceau
+const brushSizeSelect = document.getElementById("brushSizeSelect");
+brushSize = parseInt(brushSizeSelect.value);
+
+brushSizeSelect.addEventListener("change", function(event) {
+    brushSize = parseInt(event.target.value);
+});
+
+// Gestion de la forme du pinceau
+const brushShapeSelect = document.getElementById("brushShapeSelect");
+brushShape = brushShapeSelect.value;
+
+brushShapeSelect.addEventListener("change", function(event) {
+    brushShape = event.target.value;
+});
+
+// Dessiner une étoile beaucoup plus précise
+function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
+    let rot = Math.PI / 2 * 3;
+    let x = cx;
+    let y = cy;
+    let step = Math.PI / spikes;
+
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - outerRadius);
+    for (let i = 0; i < spikes; i++) {
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+    }
+    ctx.lineTo(cx, cy - outerRadius);
+    ctx.closePath();
+    ctx.fill();
+}
+
+// Dessiner un cœur beacoup plus précis
+function drawHeart(ctx, x, y, width, height) {
+    ctx.beginPath();
+    ctx.moveTo(x, y + height / 4);
+    ctx.quadraticCurveTo(x, y, x + width / 4, y);
+    ctx.quadraticCurveTo(x + width / 2, y, x + width / 2, y + height / 4);
+    ctx.quadraticCurveTo(x + width / 2, y, x + width * 3 / 4, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + height / 4);
+    ctx.quadraticCurveTo(x + width, y + height * 2 / 3, x + width / 2, y + height);
+    ctx.quadraticCurveTo(x, y + height * 2 / 3, x, y + height / 4);
+    ctx.fill();
+}

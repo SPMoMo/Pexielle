@@ -340,3 +340,87 @@ select {
     width: 80px;
     height: 80px;
 }
+
+/* Sélecteur de taille du pinceau */
+.brush-size {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.brush-size label {
+    font-size: 18px;
+    color: #34495e;
+    margin-right: 10px;
+}
+
+.brush-size select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #34495e;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.brush-size select:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Sélecteur de forme du pinceau */
+.brush-shape {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.brush-shape label {
+    font-size: 18px;
+    color: #34495e;
+    margin-right: 10px;
+}
+
+.brush-shape select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #34495e;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.brush-shape select:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Sélécteur de la taille du canevas */
+.canvas-size {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.canvas-size label {
+    font-size: 18px;
+    color: #34495e;
+    margin-right: 10px;
+}
+
+.canvas-size select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #34495e;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.canvas-size select:hover {
+    background-color: #3498db;
+    color: white;
+}
