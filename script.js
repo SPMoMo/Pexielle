@@ -621,3 +621,19 @@ function drawHeart(ctx, x, y, width, height) {
     ctx.quadraticCurveTo(x, y + height * 2 / 3, x, y + height / 4);
     ctx.fill();
 }
+
+// Récupère l'élément audio pour l'effet pop-it
+const popItSound = document.getElementById('popItSound');
+
+// Récupère tous les éléments avec la classe .color-box pour l'effet pop-it
+const popItColorBoxes = document.querySelectorAll(".color-box");
+
+// Ajoute un écouteur d'événement sur chaque boîte de couleur pour jouer le son
+popItColorBoxes.forEach(box => {
+    box.addEventListener("click", () => {
+        // Joue le son de pop-it
+        popItSound.currentTime = 0;  // Rewind pour jouer le son depuis le début
+        popItSound.volume = 1;       // Assure que le volume est au maximum
+        popItSound.play();
+    });
+});
