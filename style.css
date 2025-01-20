@@ -491,3 +491,96 @@ select {
     animation: popIt 0.6s ease-in-out;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);  /* Lueur au clic */
 }
+
+.logo:hover {
+    transform: scale(1.1) rotate(10deg);  /* Rotation douce */
+}
+
+/* Placer le sélecteur en haut à gauche sans le texte */
+#fontSelect {
+    position: absolute; /* Position absolue */
+    top: 10px; /* Distance depuis le haut */
+    left: 10px; /* Distance depuis la gauche */
+    padding: 8px;
+    font-size: 16px;
+}
+
+button:hover, select:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+button:active, select:active {
+    transform: scale(0.95);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.counter-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 20px; /* Taille réduite pour le titre */
+    margin: 0;
+}
+
+p {
+    font-size: 18px; /* Taille réduite pour le nombre de visites */
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* CSS pour le compteur de visites */
+#visit-count {
+    position: fixed; /* Pour fixer le compteur de visites à l'écran */
+    bottom: 10px;    /* Positionné à 10px du bas de la page */
+    left: 10px;      /* Positionné à 10px du bord gauche de la page */
+    font-size: 12px; /* Taille plus petite du texte */
+    color: #34495e;
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ombre douce */
+    z-index: 9999; /* Assure que l'élément est au-dessus des autres éléments */
+}
+
+#youtube-button {
+    position: fixed;
+    bottom: 10px;  /* Positionne à 10px du bas */
+    right: 10px;   /* Positionne à 10px de la droite */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ff0000; /* Couleur rouge typique de YouTube */
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;  /* Assurer que le bouton soit visible au-dessus des autres éléments */
+}
+
+#youtube-button:hover {
+    background-color: #cc0000; /* Légèrement plus foncé au survol */
+    transform: scale(1.05);  /* Agrandir légèrement au survol */
+}
+
+.youtube-icon {
+    width: 30px; /* Taille de l'icône YouTube */
+    height: 30px;
+    margin-right: 10px;  /* Espacement entre l'icône et le texte */
+}

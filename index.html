@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pexielle - Pixel Art</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
@@ -218,32 +218,56 @@
         <button id="downloadButton">Télécharger l'image</button>
     </div>
 
-    <!-- Bandeau de consentement aux cookies -->
-    <div id="cookie-consent-banner" class="cookie-consent-banner">
-        <p>
-            Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.
-            <button id="accept-cookies">Accepter</button>
-            <button id="reject-cookies">Refuser</button>
-        </p>
-    </div>
+        <!-- Choisir la police -->
+        <select id="fontSelect">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Open Sans">Open Sans</option>
+        </select>
 
-    <!-- GitHub -->
-    <div class="github-link" style="text-align: center; margin-top: 20px;">
-        <a href="https://github.com/SPMoMo/pexielle" target="_blank" aria-label="View source on GitHub">
-            <svg width="40" height="40" viewBox="0 0 250 250" style="fill:#151513; color:#fff;" aria-hidden="true">
-                <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-                <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-                <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.5 127.5,75.4 143.8,59.0 C148.5,54.4 154.0,52.2 159.9,52.0 C160.3,50.6 163.2,44.6 171.4,41.7 C171.4,41.7 176.1,43.7 178.8,57.2 C183.1,59.6 187.2,62.8 190.9,66.5 C194.6,70.2 197.8,74.3 200.2,78.7 C213.6,81.4 215.6,86.1 215.6,86.1 C212.7,94.3 206.7,97.2 205.3,97.6 C205.0,103.5 203.0,108.9 198.3,113.6 C181.9,129.9 168.8,123.5 158.7,115.1 C158.9,117.9 157.8,122.4 153.2,127.0 C136.8,143.4 120.4,137.1 106.3,128.7 C105.1,124.1 106.5,120.3 106.6,120.2 L115.0,115.0 Z" fill="currentColor" class="octo-body"></path>
-            </svg>
+        <div id="visit-count" style="position: absolute; bottom: 20px; left: 20px; font-size: 14px; color: black;">
+            Visites : <span id="count">0</span>
+        </div>                      
+
+        <!-- Bouton YouTube avec logo -->
+        <a href="https://www.youtube.com/@SP_MoMo6" target="_blank" id="youtube-button">
+            <img src="youtube-icon.png" alt="YouTube Logo" class="youtube-icon">
+            Visitez ma chaîne YouTube
         </a>
-    </div>
 
-    <!-- Pied de page -->
-    <div class="footer" id="footer">
-        <p>
-            &copy; 2024 Pexielle. Tous droits réservés.
-        </p>
-    </div>
+        <!-- Bandeau de consentement aux cookies -->
+        <div id="cookie-consent-banner" class="cookie-consent-banner">
+            <p>
+                Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.
+                <button id="accept-cookies">Accepter</button>
+                <button id="reject-cookies">Refuser</button>
+            </p>
+        </div>
+
+        <!-- GitHub -->
+        <div class="github-link" style="text-align: center; margin-top: 20px;">
+            <a href="https://github.com/SPMoMo/pexielle" target="_blank" aria-label="View source on GitHub">
+                <svg width="40" height="40" viewBox="0 0 250 250" style="fill:#151513; color:#fff;" aria-hidden="true">
+                    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+                    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+                    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.5 127.5,75.4 143.8,59.0 C148.5,54.4 154.0,52.2 159.9,52.0 C160.3,50.6 163.2,44.6 171.4,41.7 C171.4,41.7 176.1,43.7 178.8,57.2 C183.1,59.6 187.2,62.8 190.9,66.5 C194.6,70.2 197.8,74.3 200.2,78.7 C213.6,81.4 215.6,86.1 215.6,86.1 C212.7,94.3 206.7,97.2 205.3,97.6 C205.0,103.5 203.0,108.9 198.3,113.6 C181.9,129.9 168.8,123.5 158.7,115.1 C158.9,117.9 157.8,122.4 153.2,127.0 C136.8,143.4 120.4,137.1 106.3,128.7 C105.1,124.1 106.5,120.3 106.6,120.2 L115.0,115.0 Z" fill="currentColor" class="octo-body"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Pied de page -->
+        <div class="footer" id="footer">
+            <p>
+                &copy; 2024 Pexielle. Tous droits réservés.
+            </p>
+        </div>
 
     <script src="script.js" type="module"></script>
 </body>

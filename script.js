@@ -637,3 +637,79 @@ popItColorBoxes.forEach(box => {
         popItSound.play();
     });
 });
+
+// Écouter les changements du select
+document.getElementById('fontSelect').addEventListener('change', function() {
+    document.body.style.fontFamily = this.value;
+});
+
+// Fonction pour créer un élément dans le DOM
+function createElement(tag, properties) {
+    let element = document.createElement(tag);
+    for (let prop in properties) {
+        element[prop] = properties[prop];
+    }
+    return element;
+}
+
+// Fonction pour initialiser et gérer les visites
+function handleVisits() {
+    // Récupérer le nombre de visites stocké dans localStorage, ou initialiser à 0 si aucune donnée
+    let visits = localStorage.getItem("visitCount");
+
+    if (visits === null) {
+        visits = 0;
+    } else {
+        visits = parseInt(visits); // Convertir en entier si une valeur existe
+    }
+
+    // Incrémenter le nombre de visites
+    visits++;
+
+    // Sauvegarder la nouvelle valeur dans localStorage
+    localStorage.setItem("visitCount", visits);
+
+    // Supprimer l'ancien élément de compteur s'il existe déjà
+    let oldVisitCountElement = document.getElementById("visit-count");
+    if (oldVisitCountElement) {
+        oldVisitCountElement.remove();
+    }
+
+    // Créer l'élément pour afficher le nombre de visites
+    let visitCountElement = createElement('div', {
+        id: 'visit-count',
+        style: 'position: fixed; bottom: 10px; left: 10px; font-size: 14px; color: black; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px;',
+        innerText: `Visites: ${visits}`
+    });
+
+    // Ajouter l'élément au body de la page
+    document.body.appendChild(visitCountElement);
+}
+
+// Fonction pour ajouter le logo YouTube avec un lien
+function addYouTubeLogo() {
+    // Créer l'élément d'image pour le logo YouTube
+    let logoImage = createElement('img', {
+        src: 'https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png', // Remplacer par ton URL
+        alt: 'YouTube Logo',
+        style: 'position: fixed; bottom: 10px; right: 10px; width: 40px; height: 40px; cursor: pointer;'
+    });
+
+    // Créer un élément de lien pour le rediriger vers ta chaîne YouTube
+    let link = createElement('a', {
+        href: 'https://www.youtube.com/channel/UCX4mKk5W9Pv2NfPq16eXtWg', // Remplacer par l'URL de ta chaîne
+        target: '_blank'
+    });
+
+    // Ajouter l'image à l'élément de lien
+    link.appendChild(logoImage);
+
+    // Ajouter le lien avec le logo au body de la page
+    document.body.appendChild(link);
+}
+
+// Appeler la fonction pour gérer les visites
+handleVisits();
+
+// Appeler la fonction pour ajouter le logo YouTube
+addYouTubeLogo();
