@@ -145,6 +145,9 @@ const translations = {
         textInputplaceholder: "Entrez votre texte ici",
         brushSizeLabel: "Sélectionnez la taille du pinceau:",
         brushShapeLabel: "Sélectionnez la forme du pinceau:",
+        cookieConsent: "Ce site utilise des cookies pour vous offrir la meilleure expérience utilisateur. En utilisant ce site, vous acceptez notre utilisation des cookies.",
+        acceptCookies: "Accepter les cookies",
+        rejectCookies: "Refuser les cookies",
     },
     tr: {
         title: "Pexielle",
@@ -160,6 +163,9 @@ const translations = {
         textInputplaceholder: "Metninizi buraya girin",
         brushSizeLabel: "Fırça Boyutunu Seçin:",
         brushShapeLabel: "Fırça Şeklini Seçin:",
+        cookieConsent: "Bu site, size en iyi kullanıcı deneyimini sunmak için çerezleri kullanır. Bu siteyi kullanarak, çerez kullanımımızı kabul etmiş olursunuz.",
+        acceptCookies: "Çerezleri Kabul Et",
+        rejectCookies: "Çerezleri Reddet",
     },
     sv: {
         title: "Pexielle",
@@ -175,6 +181,9 @@ const translations = {
         textInputplaceholder: "Ange din text här",
         brushSizeLabel: "Välj penselstorlek:",
         brushShapeLabel: "Välj penselform:",
+        cookieConsent: "Denna webbplats använder cookies för att ge dig den bästa användarupplevelsen. Genom att använda denna webbplats godkänner du vår användning av cookies.",
+        acceptCookies: "Acceptera cookies",
+        rejectCookies: "Neka cookies",
     },
     en: {
         title: "Pexielle",
@@ -190,6 +199,9 @@ const translations = {
         textInputplaceholder: "Enter your text here",
         brushSizeLabel: "Select Brush Size:",
         brushShapeLabel: "Select Brush Shape:",
+        cookieConsent: "This site uses cookies to offer you the best user experience. By using this site, you agree to our use of cookies.",
+        acceptCookies: "Accept Cookies",
+        rejectCookies: "Reject Cookies",
     },
     es: {
         title: "Pexielle",
@@ -205,6 +217,9 @@ const translations = {
         textInputplaceholder: "Ingrese su texto aquí",
         brushSizeLabel: "Seleccionar tamaño del pincel:",
         brushShapeLabel: "Seleccionar forma del pincel:",
+        cookieConsent: "Este sitio utiliza cookies para ofrecerte la mejor experiencia de usuario. Al utilizar este sitio, aceptas nuestro uso de cookies.",
+        acceptCookies: "Aceptar cookies",
+        rejectCookies: "Rechazar cookies",
     },
     de: {
         title: "Pexielle",
@@ -220,6 +235,9 @@ const translations = {
         textInputplaceholder: "Geben Sie hier Ihren Text ein",
         brushSizeLabel: "Pinselgröße auswählen:",
         brushShapeLabel: "Pinselform auswählen:",
+        cookieConsent: "Diese Website verwendet Cookies, um Ihnen das beste Nutzungserlebnis zu bieten. Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.",
+        acceptCookies: "Cookies akzeptieren",
+        rejectCookies: "Cookies ablehnen",
     },
     it: {
         title: "Pexielle",
@@ -235,6 +253,9 @@ const translations = {
         textInputplaceholder: "Inserisci il tuo testo qui",
         brushSizeLabel: "Seleziona la dimensione del pennello:",
         brushShapeLabel: "Seleziona la forma del pennello:",
+        cookieConsent: "Questo sito utilizza i cookie per offrirti la migliore esperienza utente. Utilizzando questo sito, accetti l'uso dei cookie.",
+        acceptCookies: "Accetta i cookie",
+        rejectCookies: "Rifiuta i cookie",
     },
     pt: {
         title: "Pexielle",
@@ -250,6 +271,9 @@ const translations = {
         textInputplaceholder: "Insira seu texto aqui",
         brushSizeLabel: "Selecione o Tamanho do Pincel:",
         brushShapeLabel: "Selecione a Forma do Pincel:",
+        cookieConsent: "Este site usa cookies para oferecer a melhor experiência do usuário. Ao usar este site, você concorda com o uso de cookies.",
+        acceptCookies: "Aceitar cookies",
+        rejectCookies: "Rejeitar cookies",
     },
     nl: {
         title: "Pexielle",
@@ -265,6 +289,9 @@ const translations = {
         textInputplaceholder: "Voer hier uw tekst in",
         brushSizeLabel: "Selecteer penseelgrootte:",
         brushShapeLabel: "Selecteer penseelvorm:",
+        cookieConsent: "Deze site maakt gebruik van cookies om u de beste gebruikerservaring te bieden. Door deze site te gebruiken, gaat u akkoord met ons gebruik van cookies.",
+        acceptCookies: "Cookies accepteren",
+        rejectCookies: "Cookies weigeren",
     },
     ar: {
         title: "Pexielle",
@@ -280,6 +307,9 @@ const translations = {
         textInputplaceholder: "أدخل نصك هنا",
         brushSizeLabel: "حدد حجم الفرشاة:",
         brushShapeLabel: "حدد شكل الفرشاة:",
+        cookieConsent: "يستخدم هذا الموقع ملفات تعريف الارتباط لتقديم أفضل تجربة للمستخدم. من خلال استخدام هذا الموقع، فإنك توافق على استخدامنا لملفات تعريف الارتباط.",
+        acceptCookies: "قبول ملفات تعريف الارتباط",
+        rejectCookies: "رفض ملفات تعريف الارتباط",
     },
     hi: {
         title: "Pexielle",
@@ -295,6 +325,9 @@ const translations = {
         textInputplaceholder: "यहाँ अपना पाठ दर्ज करें",
         brushSizeLabel: "ब्रश का आकार चुनें:",
         brushShapeLabel: "ब्रश का आकार चुनें:",
+        cookieConsent: "यह साइट आपको सर्वोत्तम उपयोगकर्ता अनुभव प्रदान करने के लिए कुकीज़ का उपयोग करती है। इस साइट का उपयोग करके, आप हमारे कुकीज़ का उपयोग स्वीकार करते हैं।",
+        acceptCookies: "कुकीज़ स्वीकार करें",
+        rejectCookies: "कुकीज़ को अस्वीकार करें",
     },
     ja: {
         title: "Pexielle",
@@ -310,6 +343,9 @@ const translations = {
         textInputplaceholder: "ここにテキストを入力してください",
         brushSizeLabel: "ブラシサイズを選択：",
         brushShapeLabel: "ブラシの形状を選択：",
+        cookieConsent: "このサイトは、最高のユーザーエクスペリエンスを提供するためにクッキーを使用しています。このサイトを使用すると、クッキーの使用に同意したことになります。",
+        acceptCookies: "クッキーを受け入れる",
+        rejectCookies: "クッキーを拒否する",
     },
     ko: {
         title: "Pexielle",
@@ -325,6 +361,9 @@ const translations = {
         textInputplaceholder: "여기에 텍스트 입력",
         brushSizeLabel: "브러시 크기 선택:",
         brushShapeLabel: "브러시 모양 선택:",
+        cookieConsent: "이 사이트는 최상의 사용자 경험을 제공하기 위해 쿠키를 사용합니다. 이 사이트를 사용하면 쿠키 사용에 동의하는 것입니다.",
+        acceptCookies: "쿠키 수락",
+        rejectCookies: "쿠키 거부",
     },
     zh: {
         title: "Pexielle",
@@ -340,6 +379,9 @@ const translations = {
         textInputplaceholder: "在此输入您的文本",
         brushSizeLabel: "选择画笔大小：",
         brushShapeLabel: "选择画笔形状：",
+        cookieConsent: "此网站使用 Cookie 为您提供最佳用户体验。使用此网站即表示您同意我们使用 Cookie。",
+        acceptCookies: "接受 Cookie",
+        rejectCookies: "拒绝 Cookie",
     },
     ru: {
         title: "Pexielle",
@@ -355,6 +397,9 @@ const translations = {
         textInputplaceholder: "Введите ваш текст здесь",
         brushSizeLabel: "Выберите размер кисти:",
         brushShapeLabel: "Выберите форму кисти:",
+        cookieConsent: "Этот сайт использует файлы cookie для обеспечения наилучшего пользовательского опыта. Используя этот сайт, вы соглашаетесь на использование нами файлов cookie.",
+        acceptCookies: "Принять файлы cookie",
+        rejectCookies: "Отклонить файлы cookie",
     },
 };
 
@@ -374,7 +419,14 @@ languageSelect.addEventListener("change", function(event) {
     document.getElementById("textInput").placeholder = translations[lang].textInputplaceholder;
     document.querySelector(".brush-size label").textContent = translations[lang].brushSizeLabel;
     document.querySelector(".brush-shape label").textContent = translations[lang].brushShapeLabel;
+    document.getElementById("cookie-consent").textContent = translations[lang].cookieConsent;
+    document.getElementById("accept-cookies").textContent = translations[lang].acceptCookies;
+    document.getElementById("reject-cookies").textContent = translations[lang].rejectCookies;
 });
+
+// Le langage par défaut est l'anglais
+languageSelect.value = "en";
+languageSelect.dispatchEvent(new Event("change"));
 
 // Le JavaScript pour l'effet de survol reste simple pour appliquer la transition de couleur
 const selectElements = document.querySelectorAll('select');
@@ -713,3 +765,41 @@ handleVisits();
 
 // Appeler la fonction pour ajouter le logo YouTube
 addYouTubeLogo();
+
+// Fonction pour que le pied de page se mette à jour automatiquement
+function updateFooter() {
+    let currentYear = new Date().getFullYear();
+    document.getElementById("footer").innerHTML = `&copy; ${currentYear} Pexielle. Tous droits réservés.`;
+}
+
+// Appeler la fonction pour mettre à jour le pied de page
+updateFooter();
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Récupérer les éléments de sélection
+    const canvasSizeSelect = document.getElementById("canvasSizeSelect");
+    const brushSizeSelect = document.getElementById("brushSizeSelect");
+    const brushShapeSelect = document.getElementById("brushShapeSelect");
+  
+    // Fonction qui vérifie les sélections
+    function checkEasterEgg() {
+      const canvasSize = canvasSizeSelect.value;
+      const brushSize = brushSizeSelect.value;
+      const brushShape = brushShapeSelect.value;
+  
+      // Vérifie si les conditions sont remplies pour l'easter egg
+      if (canvasSize === "625" && brushSize === "6" && brushShape === "triangle") {
+        document.body.classList.add("easter-egg-active");
+      } else {
+        document.body.classList.remove("easter-egg-active");
+      }
+    }
+  
+    // Ajouter un événement pour chaque sélecteur pour vérifier les conditions
+    canvasSizeSelect.addEventListener("change", checkEasterEgg);
+    brushSizeSelect.addEventListener("change", checkEasterEgg);
+    brushShapeSelect.addEventListener("change", checkEasterEgg);
+  
+    // Vérifier dès le chargement de la page au cas où les valeurs seraient déjà sélectionnées
+    checkEasterEgg();
+});
