@@ -7,31 +7,6 @@ body {
     background-position: center;
 }
 
-/* Style du titre */
-h1 {
-    font-size: 30px;
-    margin: 20px 0;
-    color: red; /* Couleur festive */
-}
-
-/* Logo Pexielle */
-#title {
-    font-size: 40px;
-    margin: 20px 0;
-    font-family: 'Bryan Write', cursive;
-    color: red; /* Couleur festive */
-    opacity: 0;
-    animation: fadeInTitle 2s forwards 1s; /* Animation d'apparition */
-}
-
-
-/* Animation d'apparition du titre */
-@keyframes fadeInTitle {
-    to {
-        opacity: 1;
-    }
-}
-
 /* Conteneur du canevas */
 .container {
     display: flex;
@@ -64,6 +39,7 @@ h1 {
     height: auto;  /* Conserver les proportions du logo */
     margin-top: 20px;
     transition: transform 0.3s ease;
+    border-radius: 25%;  /* Arrondir le logo de 25% */
 }
 
 /* Effet d'agrandissement du logo au survol */
@@ -592,4 +568,27 @@ body.easter-egg-active {
     background-position: center center;  /* Centre l'image horizontalement et verticalement */
     background-repeat: no-repeat;  /* Empêche la répétition de l'image */
     transition: background 0.5s ease;
+}
+
+/* Animation de l'arrière-plan pour l'easter egg */
+@keyframes backgroundAnimation {
+    0% {
+        background-color: #e0f7fa;
+    }
+    25% {
+        background-color: #ffeb3b;
+    }
+    50% {
+        background-color: #ff5722;
+    }
+    75% {
+        background-color: #8bc34a;
+    }
+    100% {
+        background-color: #e0f7fa;
+    }
+}
+
+body.easter-egg-active {
+    animation: backgroundAnimation 10s infinite;
 }
