@@ -6,13 +6,13 @@ Lien vers le site : [Pexielle - Pixel Art](https://spmomo.github.io/Pexielle)
 
 ---
 
-## 🔍 Présentation
+## Présentation
 
 Pexielle est conçu pour offrir une expérience simple, rapide et intuitive aux amateurs comme aux professionnels du pixel art. L'interface permet de choisir la taille du canevas, la forme et la taille du pinceau, ainsi que d'autres outils pour personnaliser vos créations.
 
 ---
 
-## 🌟 Fonctionnalités principales
+## Fonctionnalités principales
 
 - **Dimensions de canevas personnalisables** : choix entre plusieurs tailles (250×250, 500×500, 1000×1000 pixels...)
 - **Pinceaux variés** : formes disponibles (Carré, Cercle, Triangle, Étoile, Cœur)
@@ -23,7 +23,7 @@ Pexielle est conçu pour offrir une expérience simple, rapide et intuitive aux 
 
 ---
 
-## 🛠️ Utilisation
+## Utilisation
 
 ### En ligne (recommandé)
 Accédez à l'application directement depuis votre navigateur :
@@ -40,7 +40,7 @@ Aucune installation ou dépendance supplémentaire n'est requise.
 
 ---
 
-## 💻 Technologies utilisées
+## Technologies utilisées
 - **HTML5** pour la structure
 - **CSS3** pour le style
 - **JavaScript** pour l'interactivité et la gestion du canevas
@@ -49,7 +49,7 @@ Aucun framework externe n'est nécessaire, ce qui garantit une grande légèret�
 
 ---
 
-## 💡 Idées d'amélioration
+## Idées d'amélioration
 - Ajout de calques pour des compositions plus complexes
 - Gestion avancée des couleurs (palettes personnalisées)
 - Outils de symétrie et de remplissage
@@ -57,7 +57,7 @@ Aucun framework externe n'est nécessaire, ce qui garantit une grande légèret�
 
 ---
 
-## 📝 Contribution
+## Contribution
 Les contributions sont les bienvenues !
 1. Forkez le dépôt
 2. Créez une branche pour vos modifications
@@ -65,7 +65,7 @@ Les contributions sont les bienvenues !
 
 ---
 
-## 📜 Licence
+## Licence
 Ce projet est sous licence **MIT**. Vous êtes libre de l'utiliser, le modifier et le redistribuer.
 
 ---
