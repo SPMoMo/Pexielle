@@ -518,49 +518,6 @@ p {
     margin: 20px 0;
 }
 
-/* CSS pour le compteur de visites */
-#visit-count {
-    position: fixed; /* Pour fixer le compteur de visites à l'écran */
-    bottom: 10px;    /* Positionné à 10px du bas de la page */
-    left: 10px;      /* Positionné à 10px du bord gauche de la page */
-    font-size: 12px; /* Taille plus petite du texte */
-    color: #34495e;
-    font-family: 'Arial', sans-serif;
-    background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
-    padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ombre douce */
-    z-index: 9999; /* Assure que l'élément est au-dessus des autres éléments */
-}
-
-#youtube-button {
-    position: fixed;
-    bottom: 10px;  /* Positionne à 10px du bas */
-    right: 10px;   /* Positionne à 10px de la droite */
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ff0000; /* Couleur rouge typique de YouTube */
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    transition: background-color 0.3s, transform 0.3s;
-    z-index: 1000;  /* Assurer que le bouton soit visible au-dessus des autres éléments */
-}
-
-#youtube-button:hover {
-    background-color: #cc0000; /* Légèrement plus foncé au survol */
-    transform: scale(1.05);  /* Agrandir légèrement au survol */
-}
-
-.youtube-icon {
-    width: 30px; /* Taille de l'icône YouTube */
-    height: 30px;
-    margin-right: 10px;  /* Espacement entre l'icône et le texte */
-}
-
 /* L'arrière-plan avec l'image, caché par défaut */
 body.easter-egg-active {
     background-image: url('easter_egg.png'); /* Assurez-vous que le chemin est correct */
@@ -593,7 +550,7 @@ body.easter-egg-active {
     animation: backgroundAnimation 10s infinite;
 }
 
-/* From Uiverse.io by CYBWEBALI */ 
+/* Bouton GitHub */
 .btn {
   display: grid;
   place-items: center;
@@ -624,4 +581,90 @@ body.easter-egg-active {
 .btn:hover svg {
   transform: scale(0.9);
   fill: #333333;
+}
+
+/* Noter le site */ 
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.3rem;
+  --stroke: #666;
+  --fill: #ffc73a;
+}
+
+.rating input {
+  appearance: unset;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating svg {
+  width: 2rem;
+  height: 2rem;
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--stroke);
+  stroke-linejoin: bevel;
+  stroke-dasharray: 12;
+  animation: idle 4s linear infinite;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+  from {
+    stroke-dashoffset: 24;
+  }
+}
+
+.rating label:hover svg {
+  stroke: var(--fill);
+}
+
+.rating input:checked ~ label svg {
+  transition: 0s;
+  animation: idle 4s linear infinite, yippee 0.75s backwards;
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-opacity: 0;
+  stroke-dasharray: 0;
+  stroke-linejoin: miter;
+  stroke-width: 8px;
+}
+
+@keyframes yippee {
+  0% {
+    transform: scale(1);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30% {
+    transform: scale(0);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30.1% {
+    stroke: var(--fill);
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+  }
+
+  60% {
+    transform: scale(1.2);
+    fill: var(--fill);
+  }
 }

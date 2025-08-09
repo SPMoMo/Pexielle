@@ -361,19 +361,31 @@ const translations = {
 // Gestion des changements de langue
 languageSelect.addEventListener("change", function(event) {
     const lang = event.target.value;
-    document.getElementById("title").textContent = translations[lang].title;
-    document.getElementById("resetButton").textContent = translations[lang].reset;
-    document.getElementById("downloadButton").textContent = translations[lang].download;
-    document.querySelector(".canvas-size label").textContent = translations[lang].sizeLabel;
-    document.getElementById("footer").innerHTML = translations[lang].footer;
-    document.getElementById("undoButton").textContent = translations[lang].undoButton;
-    document.getElementById("redoButton").textContent = translations[lang].redoButton;
-    document.querySelector("label[for='imageInput']").textContent = translations[lang].imageInput;
-    document.querySelector("label[for='textInput']").textContent = translations[lang].textInput;
-    document.getElementById("addTextButton").textContent = translations[lang].addTextButton;
-    document.getElementById("textInput").placeholder = translations[lang].textInputplaceholder;
-    document.querySelector(".brush-size label").textContent = translations[lang].brushSizeLabel;
-    document.querySelector(".brush-shape label").textContent = translations[lang].brushShapeLabel;
+    if (translations[lang]) {
+        const t = translations[lang];
+        const setText = (selector, value) => {
+            const el = document.querySelector(selector);
+            if (el) el.textContent = value;
+        };
+        const setPlaceholder = (selector, value) => {
+            const el = document.querySelector(selector);
+            if (el) el.placeholder = value;
+        };
+        document.getElementById("title").textContent = t.title;
+        document.getElementById("resetButton").textContent = t.reset;
+        document.getElementById("downloadButton").textContent = t.download;
+        setText(".canvas-size label", t.sizeLabel);
+        document.getElementById("footer").innerHTML = t.footer.replace("2024", new Date().getFullYear());
+        document.getElementById("undoButton").textContent = t.undoButton;
+        document.getElementById("redoButton").textContent = t.redoButton;
+        setText("label[for='imageInput']", t.imageInput);
+        setText("label[for='textInput']", t.textInput);
+        document.getElementById("addTextButton").textContent = t.addTextButton;
+        setPlaceholder("#textInput", t.textInputplaceholder);
+        setText(".brush-size label", t.brushSizeLabel);
+        setText(".brush-shape label", t.brushShapeLabel);
+        tooltip.textContent = tooltipTranslations[lang];
+    }
 });
 
 // Le langage par défaut est le Français
@@ -655,68 +667,6 @@ function createElement(tag, properties) {
     }
     return element;
 }
-
-// Fonction pour initialiser et gérer les visites
-function handleVisits() {
-    // Récupérer le nombre de visites stocké dans localStorage, ou initialiser à 0 si aucune donnée
-    let visits = localStorage.getItem("visitCount");
-
-    if (visits === null) {
-        visits = 0;
-    } else {
-        visits = parseInt(visits); // Convertir en entier si une valeur existe
-    }
-
-    // Incrémenter le nombre de visites
-    visits++;
-
-    // Sauvegarder la nouvelle valeur dans localStorage
-    localStorage.setItem("visitCount", visits);
-
-    // Supprimer l'ancien élément de compteur s'il existe déjà
-    let oldVisitCountElement = document.getElementById("visit-count");
-    if (oldVisitCountElement) {
-        oldVisitCountElement.remove();
-    }
-
-    // Créer l'élément pour afficher le nombre de visites
-    let visitCountElement = createElement('div', {
-        id: 'visit-count',
-        style: 'position: fixed; bottom: 10px; left: 10px; font-size: 14px; color: black; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px;',
-        innerText: `Visites: ${visits}`
-    });
-
-    // Ajouter l'élément au body de la page
-    document.body.appendChild(visitCountElement);
-}
-
-// Fonction pour ajouter le logo YouTube avec un lien
-function addYouTubeLogo() {
-    // Créer l'élément d'image pour le logo YouTube
-    let logoImage = createElement('img', {
-        src: 'https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png', // Remplacer par ton URL
-        alt: 'YouTube Logo',
-        style: 'position: fixed; bottom: 10px; right: 10px; width: 40px; height: 40px; cursor: pointer;'
-    });
-
-    // Créer un élément de lien pour le rediriger vers ta chaîne YouTube
-    let link = createElement('a', {
-        href: 'https://www.youtube.com/channel/UCX4mKk5W9Pv2NfPq16eXtWg', // Remplacer par l'URL de ta chaîne
-        target: '_blank'
-    });
-
-    // Ajouter l'image à l'élément de lien
-    link.appendChild(logoImage);
-
-    // Ajouter le lien avec le logo au body de la page
-    document.body.appendChild(link);
-}
-
-// Appeler la fonction pour gérer les visites
-handleVisits();
-
-// Appeler la fonction pour ajouter le logo YouTube
-addYouTubeLogo();
 
 // Fonction pour que le pied de page se mette à jour automatiquement
 function updateFooter() {
