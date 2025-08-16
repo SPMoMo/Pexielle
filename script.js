@@ -358,32 +358,31 @@ const translations = {
     },
 };
 
-// Gestion des changements de langue
+// Gestion améliorée des changements de langue
 languageSelect.addEventListener("change", function(event) {
     const lang = event.target.value;
     if (translations[lang]) {
         const t = translations[lang];
-        const setText = (selector, value) => {
-            const el = document.querySelector(selector);
-            if (el) el.textContent = value;
-        };
-        const setPlaceholder = (selector, value) => {
-            const el = document.querySelector(selector);
-            if (el) el.placeholder = value;
-        };
-        document.getElementById("title").textContent = t.title;
-        document.getElementById("resetButton").textContent = t.reset;
-        document.getElementById("downloadButton").textContent = t.download;
-        setText(".canvas-size label", t.sizeLabel);
-        document.getElementById("footer").innerHTML = t.footer.replace("2024", new Date().getFullYear());
-        document.getElementById("undoButton").textContent = t.undoButton;
-        document.getElementById("redoButton").textContent = t.redoButton;
-        setText("label[for='imageInput']", t.imageInput);
-        setText("label[for='textInput']", t.textInput);
-        document.getElementById("addTextButton").textContent = t.addTextButton;
-        setPlaceholder("#textInput", t.textInputplaceholder);
-        setText(".brush-size label", t.brushSizeLabel);
-        setText(".brush-shape label", t.brushShapeLabel);
+        // Utilitaire pour changer le texte ou placeholder
+        function updateElement(selector, prop, value) {
+            document.querySelectorAll(selector).forEach(el => {
+                el[prop] = value;
+            });
+        }
+        // Mise à jour des textes
+        updateElement("#title", "textContent", t.title);
+        updateElement("#resetButton", "textContent", t.reset);
+        updateElement("#downloadButton", "textContent", t.download);
+        updateElement(".canvas-size label", "textContent", t.sizeLabel);
+        updateElement("#footer", "innerHTML", t.footer.replace("2024", new Date().getFullYear()));
+        updateElement("#undoButton", "textContent", t.undoButton);
+        updateElement("#redoButton", "textContent", t.redoButton);
+        updateElement("label[for='imageInput']", "textContent", t.imageInput);
+        updateElement("label[for='textInput']", "textContent", t.textInput);
+        updateElement("#addTextButton", "textContent", t.addTextButton);
+        updateElement("#textInput", "placeholder", t.textInputplaceholder);
+        updateElement(".brush-size label", "textContent", t.brushSizeLabel);
+        updateElement(".brush-shape label", "textContent", t.brushShapeLabel);
         tooltip.textContent = tooltipTranslations[lang];
     }
 });
