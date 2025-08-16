@@ -668,3 +668,25 @@ body.easter-egg-active {
     fill: var(--fill);
   }
 }
+
+/* Style moderne et stylé pour le color picker */
+#colorPicker {
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+#colorPicker:hover {
+    background: linear-gradient(45deg, #ff4c4c, #e04a7d);
+    transform: scale(1.05);
+}
+#colorPicker:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
