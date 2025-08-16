@@ -145,6 +145,13 @@ const translations = {
         textInputplaceholder: "Entrez votre texte ici",
         brushSizeLabel: "Sélectionnez la taille du pinceau:",
         brushShapeLabel: "Sélectionnez la forme du pinceau:",
+        brushShapeOptions: {
+            square: "Carré",
+            circle: "Cercle",
+            triangle: "Triangle",
+            star: "Étoile",
+            heart: "Cœur"
+        }
     },
     tr: {
         title: "Pexielle",
@@ -160,6 +167,13 @@ const translations = {
         textInputplaceholder: "Metninizi buraya girin",
         brushSizeLabel: "Fırça Boyutunu Seçin:",
         brushShapeLabel: "Fırça Şeklini Seçin:",
+        brushShapeOptions: {
+            square: "Kare",
+            circle: "Daire",
+            triangle: "Üçgen",
+            star: "Yıldız",
+            heart: "Kalp"
+        }
     },
     sv: {
         title: "Pexielle",
@@ -175,6 +189,13 @@ const translations = {
         textInputplaceholder: "Ange din text här",
         brushSizeLabel: "Välj penselstorlek:",
         brushShapeLabel: "Välj penselform:",
+        brushShapeOptions: {
+            square: "Fyrkant",
+            circle: "Cirkel",
+            triangle: "Triangel",
+            star: "Stjärna",
+            heart: "Hjärta"
+        }
     },
     en: {
         title: "Pexielle",
@@ -190,6 +211,13 @@ const translations = {
         textInputplaceholder: "Enter your text here",
         brushSizeLabel: "Select Brush Size:",
         brushShapeLabel: "Select Brush Shape:",
+        brushShapeOptions: {
+            square: "Square",
+            circle: "Circle",
+            triangle: "Triangle",
+            star: "Star",
+            heart: "Heart"
+        }
     },
     es: {
         title: "Pexielle",
@@ -205,6 +233,13 @@ const translations = {
         textInputplaceholder: "Ingrese su texto aquí",
         brushSizeLabel: "Seleccionar tamaño del pincel:",
         brushShapeLabel: "Seleccionar forma del pincel:",
+        brushShapeOptions: {
+            square: "Cuadrado",
+            circle: "Círculo",
+            triangle: "Triángulo",
+            star: "Estrella",
+            heart: "Corazón"
+        }
     },
     de: {
         title: "Pexielle",
@@ -220,6 +255,13 @@ const translations = {
         textInputplaceholder: "Geben Sie hier Ihren Text ein",
         brushSizeLabel: "Pinselgröße auswählen:",
         brushShapeLabel: "Pinselform auswählen:",
+        brushShapeOptions: {
+            square: "Quadrat",
+            circle: "Kreis",
+            triangle: "Dreieck",
+            star: "Stern",
+            heart: "Herz"
+        }
     },
     it: {
         title: "Pexielle",
@@ -235,6 +277,13 @@ const translations = {
         textInputplaceholder: "Inserisci il tuo testo qui",
         brushSizeLabel: "Seleziona la dimensione del pennello:",
         brushShapeLabel: "Seleziona la forma del pennello:",
+        brushShapeOptions: {
+            square: "Quadrato",
+            circle: "Cerchio",
+            triangle: "Triangolo",
+            star: "Stella",
+            heart: "Cuore"
+        }
     },
     pt: {
         title: "Pexielle",
@@ -250,6 +299,13 @@ const translations = {
         textInputplaceholder: "Insira seu texto aqui",
         brushSizeLabel: "Selecione o Tamanho do Pincel:",
         brushShapeLabel: "Selecione a Forma do Pincel:",
+        brushShapeOptions: {
+            square: "Quadrado",
+            circle: "Círculo",
+            triangle: "Triângulo",
+            star: "Estrela",
+            heart: "Coração"
+        }
     },
     nl: {
         title: "Pexielle",
@@ -265,6 +321,13 @@ const translations = {
         textInputplaceholder: "Voer hier uw tekst in",
         brushSizeLabel: "Selecteer penseelgrootte:",
         brushShapeLabel: "Selecteer penseelvorm:",
+        brushShapeOptions: {
+            square: "Vierkant",
+            circle: "Cirkel",
+            triangle: "Driehoek",
+            star: "Ster",
+            heart: "Hart"
+        }
     },
     ar: {
         title: "Pexielle",
@@ -280,6 +343,13 @@ const translations = {
         textInputplaceholder: "أدخل نصك هنا",
         brushSizeLabel: "حدد حجم الفرشاة:",
         brushShapeLabel: "حدد شكل الفرشاة:",
+        brushShapeOptions: {
+            square: "مربع",
+            circle: "دائرة",
+            triangle: "مثلث",
+            star: "نجمة",
+            heart: "قلب"
+        }
     },
     hi: {
         title: "Pexielle",
@@ -295,6 +365,13 @@ const translations = {
         textInputplaceholder: "यहाँ अपना पाठ दर्ज करें",
         brushSizeLabel: "ब्रश का आकार चुनें:",
         brushShapeLabel: "ब्रश का आकार चुनें:",
+        brushShapeOptions: {
+            square: "वर्ग",
+            circle: "वृत्त",
+            triangle: "त्रिकोण",
+            star: "तारा",
+            heart: "दिल"
+        }
     },
     ja: {
         title: "Pexielle",
@@ -310,6 +387,13 @@ const translations = {
         textInputplaceholder: "ここにテキストを入力してください",
         brushSizeLabel: "ブラシサイズを選択：",
         brushShapeLabel: "ブラシの形状を選択：",
+        brushShapeOptions: {
+            square: "四角",
+            circle: "円",
+            triangle: "三角",
+            star: "星",
+            heart: "ハート"
+        }
     },
     ko: {
         title: "Pexielle",
@@ -325,6 +409,13 @@ const translations = {
         textInputplaceholder: "여기에 텍스트 입력",
         brushSizeLabel: "브러시 크기 선택:",
         brushShapeLabel: "브러시 모양 선택:",
+        brushShapeOptions: {
+            square: "정사각형",
+            circle: "원",
+            triangle: "삼각형",
+            star: "별",
+            heart: "하트"
+        }
     },
     zh: {
         title: "Pexielle",
@@ -340,6 +431,13 @@ const translations = {
         textInputplaceholder: "在此输入您的文本",
         brushSizeLabel: "选择画笔大小：",
         brushShapeLabel: "选择画笔形状：",
+        brushShapeOptions: {
+            square: "方形",
+            circle: "圆形",
+            triangle: "三角形",
+            star: "星形",
+            heart: "心形"
+        }
     },
     ru: {
         title: "Pexielle",
@@ -355,6 +453,13 @@ const translations = {
         textInputplaceholder: "Введите ваш текст здесь",
         brushSizeLabel: "Выберите размер кисти:",
         brushShapeLabel: "Выберите форму кисти:",
+        brushShapeOptions: {
+            square: "Квадрат",
+            circle: "Круг",
+            triangle: "Треугольник",
+            star: "Звезда",
+            heart: "Сердце"
+        }
     },
 };
 
@@ -383,6 +488,7 @@ languageSelect.addEventListener("change", function(event) {
         updateElement("#textInput", "placeholder", t.textInputplaceholder);
         updateElement(".brush-size label", "textContent", t.brushSizeLabel);
         updateElement(".brush-shape label", "textContent", t.brushShapeLabel);
+        updateElement("#brushShapeSelect", "innerHTML", Object.entries(t.brushShapeOptions).map(([key, value]) => `<option value="${key}">${value}</option>`).join(''));
         tooltip.textContent = tooltipTranslations[lang];
     }
 });
