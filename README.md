@@ -51,7 +51,6 @@ No external frameworks are required, ensuring lightweight performance and high c
 
 ## Ideas for Improvement
 - Add layers for more complex compositions
-- Advanced color management (custom palettes)
 - Symmetry and fill tools
 - Add a sign-up and login system
 
