@@ -53,7 +53,6 @@ Aucun framework externe n'est nécessaire, ce qui garantit une grande légèret�
 - Ajout de calques pour des compositions plus complexes
 - Gestion avancée des couleurs (palettes personnalisées)
 - Outils de symétrie et de remplissage
-- Sauvegarde automatique dans le navigateur
 - Ajout d'un système d'inscription et de connexion
 
 ---
