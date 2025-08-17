@@ -73,6 +73,26 @@ Contributions are welcome!
 
 ---
 
+## Support & Suggestions
+
+If you enjoy using **Pexielle** and would like to support its development, feel free to give a ⭐ on the repository!
+
+Your feedback is incredibly valuable:
+- Found a bug? Please open an issue or suggest a fix.
+- Got an idea to make the app even better? Don't hesitate to share it!
+- Want to collaborate or contribute a feature? You're more than welcome!
+
+---
+
+### Contact
+
+You can reach out to me directly through [GitHub Issues](https://github.com/SPMoMo/Pexielle/issues) for suggestions, bug reports, or feature requests.  
+Alternatively, feel free to open a discussion or fork the project and submit a pull request.
+
+Let’s build something great together!
+
+---
+
 ## License
 This project is licensed under the **MIT** license. You are free to use, modify, and redistribute it.
 
