@@ -61,6 +61,7 @@ No external frameworks are required, ensuring lightweight performance and high c
 - Add a floating page to customize the pixelation rate of the text and be able to resize the text and place it where you want
 - Add a system to be able to create a custom pixel with pixels and add it to the color palette
 - Add a system to pixelate emojis added in the text field
+- Add a zoom in and zoom out system for precise drawing
 
 ---
 
