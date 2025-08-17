@@ -53,6 +53,14 @@ No external frameworks are required, ensuring lightweight performance and high c
 - Add layers for more complex compositions
 - Symmetry and fill tools
 - Add a sign-up and login system
+- Make the canvas size customizable
+- Make the brush size customizable
+- Pixelation of texts added to the canvas
+- Pixelation of images added to the canvas
+- Add a floating page to customize the pixelation rate of the image and be able to resize the image and place it where you want
+- Add a floating page to customize the pixelation rate of the text and be able to resize the text and place it where you want
+- Add a system to be able to create a custom pixel with pixels and add it to the color palette
+- Add a system to pixelate emojis added in the text field
 
 ---
 
