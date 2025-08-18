@@ -520,7 +520,7 @@ p {
 
 /* L'arrière-plan avec l'image, caché par défaut */
 body.easter-egg-active {
-    background-image: url('easter_egg.png'); /* Assurez-vous que le chemin est correct */
+    background-image: url('assets/easter_egg.png'); /* Assurez-vous que le chemin est correct */
     background-size: contain;  /* L'image sera contenue dans l'écran sans déformation */
     background-position: center center;  /* Centre l'image horizontalement et verticalement */
     background-repeat: no-repeat;  /* Empêche la répétition de l'image */
