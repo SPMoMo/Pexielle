@@ -10,6 +10,9 @@ let brushShape = "square"; // Forme par défaut du pinceau
 let brushSize = 1; // Taille par défaut du pinceau
 let isAddingText = false; // Variable pour vérifier si l'utilisateur ajoute du texte
 
+// FIX: Couleur courante initialisée pour éviter les erreurs et voir le tracé
+let currentColor = "#000000";
+
 // Fonction pour redimensionner le canevas
 function resizeCanvas() {
     const selectedSize = document.getElementById("canvasSizeSelect").value;
@@ -28,27 +31,38 @@ canvasSizeSelect.addEventListener("change", resizeCanvas);
 resizeCanvas();
 
 // Dessiner sur le canevas
-let currentColor = "#000000"; // Couleur par défaut
-let isMouseDown = false;
+let isDrawing = false;
 
-// Activer le dessin lors du clic
-canvas.addEventListener("mousedown", function(event) {
-    if (isAddingText) return;
-    isMouseDown = true;
-    drawPixel(event);
+function getCanvasPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  };
+}
+
+canvas.addEventListener("pointerdown", (e) => {
+  if (isAddingText) return;
+  isDrawing = true;
+  canvas.setPointerCapture(e.pointerId);
+  drawPixel(e);
 });
 
-// Désactiver le dessin lors du relâchement du clic
-canvas.addEventListener("mouseup", function() {
-    isMouseDown = false;
+canvas.addEventListener("pointermove", (e) => {
+  if (!isDrawing) return;
+  drawPixel(e);
 });
 
-// Dessiner lors du déplacement de la souris
-canvas.addEventListener("mousemove", function(event) {
-    if (isMouseDown) {
-        drawPixel(event);
-    }
-});
+function endStroke(e) {
+  if (!isDrawing) return;
+  isDrawing = false;
+  try { canvas.releasePointerCapture(e.pointerId); } catch {}
+  saveState();
+}
+
+canvas.addEventListener("pointerup", endStroke);
+canvas.addEventListener("pointercancel", endStroke);
+canvas.addEventListener("pointerleave", endStroke);
 
 // Dessiner un pixel avec la taille et la forme du pinceau
 function drawPixel(event) {
@@ -110,6 +124,7 @@ function rgbToHex(rgb) {
 const resetButton = document.getElementById("resetButton");
 resetButton.addEventListener("click", function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    saveState(); // on garde l’état vidé dans l’historique
 });
 
 // Télécharger l'image
@@ -151,7 +166,13 @@ const translations = {
             triangle: "Triangle",
             star: "Étoile",
             heart: "Cœur"
-        }
+        },
+        eraserButton: "Gomme",
+        cookieConsent: {
+            message: "Ce site utilise des cookies pour vous offrir la meilleure expérience utilisateur. En utilisant ce site, vous acceptez notre utilisation des cookies.",
+            accept: "Accepter",
+            reject: "Refuser"
+        },
     },
     tr: {
         title: "Pexielle",
@@ -173,7 +194,13 @@ const translations = {
             triangle: "Üçgen",
             star: "Yıldız",
             heart: "Kalp"
-        }
+        },
+        eraserButton: "Silgi",
+        cookieConsent: {
+            message: "Bu site, size en iyi kullanıcı deneyimini sunmak için çerezler kullanır. Bu siteyi kullanarak, çerez kullanımımızı kabul etmiş olursunuz.",
+            accept: "Kabul Et",
+            reject: "Reddet"
+        },
     },
     sv: {
         title: "Pexielle",
@@ -195,7 +222,13 @@ const translations = {
             triangle: "Triangel",
             star: "Stjärna",
             heart: "Hjärta"
-        }
+        },
+        eraserButton: "Suddgummi",
+        cookieConsent: {
+            message: "Denna webbplats använder cookies för att ge dig den bästa användarupplevelsen. Genom att använda denna webbplats godkänner du vår användning av cookies.",
+            accept: "Acceptera",
+            reject: "Avvisa"
+        },
     },
     en: {
         title: "Pexielle",
@@ -217,7 +250,13 @@ const translations = {
             triangle: "Triangle",
             star: "Star",
             heart: "Heart"
-        }
+        },
+        eraserButton: "Eraser",
+        cookieConsent: {
+            message: "This site uses cookies to ensure you get the best user experience. By using this site, you agree to our use of cookies.",
+            accept: "Accept",
+            reject: "Reject"
+        },
     },
     es: {
         title: "Pexielle",
@@ -239,7 +278,13 @@ const translations = {
             triangle: "Triángulo",
             star: "Estrella",
             heart: "Corazón"
-        }
+        },
+        eraserButton: "Borrador",
+        cookieConsent: {
+            message: "Este sitio utiliza cookies para garantizar que obtenga la mejor experiencia de usuario. Al usar este sitio, usted acepta nuestro uso de cookies.",
+            accept: "Aceptar",
+            reject: "Rechazar"
+        },
     },
     de: {
         title: "Pexielle",
@@ -261,7 +306,13 @@ const translations = {
             triangle: "Dreieck",
             star: "Stern",
             heart: "Herz"
-        }
+        },
+        eraserButton: "Radiergummi",
+        cookieConsent: {
+            message: "Diese Seite verwendet Cookies, um Ihnen die beste Benutzererfahrung zu bieten. Durch die Nutzung dieser Seite stimmen Sie unserer Verwendung von Cookies zu.",
+            accept: "Akzeptieren",
+            reject: "Ablehnen"
+        },
     },
     it: {
         title: "Pexielle",
@@ -283,7 +334,13 @@ const translations = {
             triangle: "Triangolo",
             star: "Stella",
             heart: "Cuore"
-        }
+        },
+        eraserButton: "Gomma",
+        cookieConsent: {
+            message: "Questo sito utilizza i cookie per garantirti la migliore esperienza utente. Utilizzando questo sito, accetti il nostro utilizzo dei cookie.",
+            accept: "Accetta",
+            reject: "Rifiuta"
+        },
     },
     pt: {
         title: "Pexielle",
@@ -305,7 +362,13 @@ const translations = {
             triangle: "Triângulo",
             star: "Estrela",
             heart: "Coração"
-        }
+        },
+        eraserButton: "Borracha",
+        cookieConsent: {
+            message: "Este site usa cookies para garantir que você obtenha a melhor experiência do usuário. Ao usar este site, você concorda com o uso de cookies.",
+            accept: "Aceitar",
+            reject: "Rejeitar"
+        },
     },
     nl: {
         title: "Pexielle",
@@ -327,7 +390,13 @@ const translations = {
             triangle: "Driehoek",
             star: "Ster",
             heart: "Hart"
-        }
+        },
+        eraserButton: "Gum",
+        cookieConsent: {
+            message: "Deze site gebruikt cookies om u de beste gebruikerservaring te bieden. Door deze site te gebruiken, gaat u akkoord met ons gebruik van cookies.",
+            accept: "Accepteren",
+            reject: "Weigeren"
+        },
     },
     ar: {
         title: "Pexielle",
@@ -349,7 +418,13 @@ const translations = {
             triangle: "مثلث",
             star: "نجمة",
             heart: "قلب"
-        }
+        },
+        eraserButton: "ممحاة",
+        cookieConsent: {
+            message: "يستخدم هذا الموقع ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة مستخدم. باستخدام هذا الموقع، فإنك توافق على استخدامنا لملفات تعريف الارتباط.",
+            accept: "أوافق",
+            reject: "أرفض"
+        },
     },
     hi: {
         title: "Pexielle",
@@ -371,7 +446,13 @@ const translations = {
             triangle: "त्रिकोण",
             star: "तारा",
             heart: "दिल"
-        }
+        },
+        eraserButton: "रबर",
+        cookieConsent: {
+            message: "यह साइट आपको सर्वोत्तम उपयोगकर्ता अनुभव सुनिश्चित करने के लिए कुकीज़ का उपयोग करती है। इस साइट का उपयोग करके, आप हमारी कुकीज़ के उपयोग से सहमत हैं।",
+            accept: "स्वीकार करें",
+            reject: "अस्वीकार करें"
+        },
     },
     ja: {
         title: "Pexielle",
@@ -393,7 +474,13 @@ const translations = {
             triangle: "三角",
             star: "星",
             heart: "ハート"
-        }
+        },
+        eraserButton: "消しゴム",
+        cookieConsent: {
+            message: "このサイトは、最高のユーザーエクスペリエンスを提供するためにクッキーを使用しています。このサイトを使用することで、クッキーの使用に同意したことになります。",
+            accept: "同意する",
+            reject: "拒否する"
+        },
     },
     ko: {
         title: "Pexielle",
@@ -415,7 +502,13 @@ const translations = {
             triangle: "삼각형",
             star: "별",
             heart: "하트"
-        }
+        },
+        eraserButton: "지우개",
+        cookieConsent: {
+            message: "이 사이트는 최상의 사용자 경험을 제공하기 위해 쿠키를 사용합니다. 이 사이트를 사용함으로써 쿠키 사용에 동의하게 됩니다.",
+            accept: "동의",
+            reject: "거부"
+        },
     },
     zh: {
         title: "Pexielle",
@@ -437,7 +530,13 @@ const translations = {
             triangle: "三角形",
             star: "星形",
             heart: "心形"
-        }
+        },
+        eraserButton: "橡皮擦",
+        cookieConsent: {
+            message: "本网站使用Cookie以确保您获得最佳用户体验。使用本网站即表示您同意我们使用Cookie。",
+            accept: "接受",
+            reject: "拒绝"
+        },
     },
     ru: {
         title: "Pexielle",
@@ -459,16 +558,22 @@ const translations = {
             triangle: "Треугольник",
             star: "Звезда",
             heart: "Сердце"
-        }
+        },
+        eraserButton: "Ластик",
+        cookieConsent: {
+            message: "Этот сайт использует файлы cookie, чтобы обеспечить вам лучший пользовательский опыт. Используя этот сайт, вы соглашаетесь с нашим использованием файлов cookie.",
+            accept: "Принять",
+            reject: "Отклонить"
+        },
     },
 };
 
 // Gestion améliorée des changements de langue
 languageSelect.addEventListener("change", function(event) {
-    const lang = event.target.value;
-    if (translations[lang]) {
-        const t = translations[lang];
-        // Utilitaire pour changer le texte ou placeholder
+  const lang = event.target.value;
+  if (translations[lang]) {
+    const t = translations[lang];
+    // Utilitaire pour changer le texte ou placeholder
         function updateElement(selector, prop, value) {
             document.querySelectorAll(selector).forEach(el => {
                 el[prop] = value;
@@ -489,8 +594,14 @@ languageSelect.addEventListener("change", function(event) {
         updateElement(".brush-size label", "textContent", t.brushSizeLabel);
         updateElement(".brush-shape label", "textContent", t.brushShapeLabel);
         updateElement("#brushShapeSelect", "innerHTML", Object.entries(t.brushShapeOptions).map(([key, value]) => `<option value="${key}">${value}</option>`).join(''));
-        tooltip.textContent = tooltipTranslations[lang];
+        updateElement("#eraserButton", "textContent", t.eraserButton);
+        updateElement("#cookie-consent-message", "textContent", t.cookieConsent.message);
+        updateElement("#accept-cookies", "textContent", t.cookieConsent.accept);
+        updateElement("#reject-cookies", "textContent", t.cookieConsent.reject);
+    if (typeof tooltip !== "undefined") {
+      tooltip.textContent = tooltipTranslations[lang];
     }
+  }
 });
 
 // Le langage par défaut est le Français
@@ -610,6 +721,10 @@ imageInput.addEventListener("change", function(event) {
         reader.readAsDataURL(file);
     }
 });
+
+// Désactiver le lissage des images pour un effet pixelisé
+ctx.imageSmoothingEnabled = false;
+canvas.style.imageRendering = "pixelated";
 
 // Ajouter un texte sur le canevas
 const addTextButton = document.getElementById("addTextButton");
@@ -828,4 +943,276 @@ languageSelect.addEventListener("change", function(event) {
     document.querySelector(".brush-size label").textContent = translations[lang].brushSizeLabel;
     document.querySelector(".brush-shape label").textContent = translations[lang].brushShapeLabel;
     tooltip.textContent = tooltipTranslations[lang];
+});
+
+// Fonction de la gomme
+const eraserButton = document.getElementById("eraserButton");
+
+function setEraserActive(active) {
+  isEraserActive = active;
+  ctx.globalCompositeOperation = active ? "destination-out" : "source-over";
+  eraserButton.style.backgroundColor = active ? "#ccc" : "";
+  updateEraserCursor();
+}
+
+eraserButton.addEventListener("click", () => {
+  setEraserActive(!isEraserActive);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "e" || event.key === "E") setEraserActive(true);
+});
+document.addEventListener("keyup", (event) => {
+  if (event.key === "e" || event.key === "E") setEraserActive(false);
+});
+
+// Si on change de couleur/formes/taille, on sort du mode gomme
+[colorPicker, brushSizeSelect, brushShapeSelect].forEach(el => {
+  el.addEventListener("change", () => {
+    if (isEraserActive) setEraserActive(false);
+  });
+  el.addEventListener("input", () => {
+    if (isEraserActive) setEraserActive(false);
+  });
+});
+
+// Mettre à jour le curseur en fonction de l'état de la gomme et de l'ajout de texte
+function updateEraserCursor() {
+  if (isEraserActive) {
+    canvas.style.cursor = "crosshair";
+  } else if (isAddingText) {
+    canvas.style.cursor = "crosshair";
+  } else {
+    canvas.style.cursor = "cell";
+  }
+}
+
+// Fonction pour activer le mode gomme
+let isEraserActive = false;
+document.getElementById("eraserButton").addEventListener("click", function() {
+    isEraserActive = !isEraserActive;
+    if (isEraserActive) {
+        currentColor = "#FFFFFF"; // Couleur blanche pour effacer
+        this.style.backgroundColor = "#ccc"; // Indiquer que la gomme est active
+    } else {
+        currentColor = colorPicker.value; // Revenir à la couleur sélectionnée
+        this.style.backgroundColor = ""; // Réinitialiser le style du bouton
+    }
+});
+// Désactiver le mode gomme lors du changement de couleur
+colorPicker.addEventListener("input", function(event) {
+    if (isEraserActive) {
+        isEraserActive = false;
+        document.getElementById("eraserButton").style.backgroundColor = ""; // Réinitialiser le style du bouton
+    }
+    currentColor = event.target.value;
+});
+// Désactiver le mode gomme lors du changement de forme ou taille du pinceau
+brushSizeSelect.addEventListener("change", function() {
+    if (isEraserActive) {
+        isEraserActive = false;
+        document.getElementById("eraserButton").style.backgroundColor = ""; // Réinitialiser le style du bouton
+        currentColor = colorPicker.value; // Revenir à la couleur sélectionnée
+    }
+});
+brushShapeSelect.addEventListener("change", function() {
+    if (isEraserActive) {
+        isEraserActive = false;
+        document.getElementById("eraserButton").style.backgroundColor = ""; // Réinitialiser le style du bouton
+        currentColor = colorPicker.value; // Revenir à la couleur sélectionnée
+    }
+});
+// Fonction pour activer le mode gomme avec la touche "E"
+document.addEventListener("keydown", function(event) {
+    if (event.key === "e" || event.key === "E") {
+        isEraserActive = true;
+        currentColor = "#FFFFFF"; // Couleur blanche pour effacer
+        document.getElementById("eraserButton").style.backgroundColor = "#ccc"; // Indiquer que la gomme est active
+    }
+});
+document.addEventListener("keyup", function(event) {
+    if (event.key === "e" || event.key === "E") {
+        isEraserActive = false;
+        currentColor = colorPicker.value; // Revenir à la couleur sélectionnée
+        document.getElementById("eraserButton").style.backgroundColor = ""; // Réinitialiser le style du bouton
+    }
+});
+
+// Afficher une indication visuelle pour l'activation de la gomme
+const eraserTooltip = document.createElement("div");
+eraserTooltip.style.position = "absolute";
+eraserTooltip.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+eraserTooltip.style.color = "#fff";
+eraserTooltip.style.padding = "5px";
+eraserTooltip.style.borderRadius = "3px";
+eraserTooltip.style.pointerEvents = "none";
+eraserTooltip.style.display = "none";
+eraserTooltip.textContent = "Appuyez sur 'E' pour activer la gomme, relâchez pour désactiver";
+document.body.appendChild(eraserTooltip);
+
+eraserButton.addEventListener("mouseenter", function(event) {
+    eraserTooltip.style.left = event.pageX + 10 + "px";
+    eraserTooltip.style.top = event.pageY + 10 + "px";
+    eraserTooltip.style.display = "block";
+});
+eraserButton.addEventListener("mousemove", function(event) {
+    eraserTooltip.style.left = event.pageX + 10 + "px";
+    eraserTooltip.style.top = event.pageY + 10 + "px";
+});
+eraserButton.addEventListener("mouseleave", function() {
+    eraserTooltip.style.display = "none";
+});
+
+// Mettre à jour l'indication visuelle lors du changement de langue
+languageSelect.addEventListener("change", function(event) {
+    const lang = event.target.value;
+    if (lang === "fr") {
+        eraserTooltip.textContent = "Appuyez sur 'E' pour activer la gomme, relâchez pour désactiver";
+    } else if (lang === "en") {
+        eraserTooltip.textContent = "Press 'E' to enable eraser, release to disable";
+    } else if (lang === "es") {
+        eraserTooltip.textContent = "Presiona 'E' para activar la goma, suelta para desactivar";
+    } else if (lang === "de") {
+        eraserTooltip.textContent = "Drücken Sie 'E', um den Radiergummi zu aktivieren, lassen Sie los, um ihn zu deaktivieren";
+    } else if (lang === "it") {
+        eraserTooltip.textContent = "Premi 'E' per attivare la gomma, rilascia per disattivare";
+    } else if (lang === "pt") {
+        eraserTooltip.textContent = "Pressione 'E' para ativar a borracha, solte para desativar";
+    } else if (lang === "nl") {
+        eraserTooltip.textContent = "Druk op 'E' om de gum in te schakelen, laat los om uit te schakelen";
+    } else if (lang === "tr") {
+        eraserTooltip.textContent = "'E' tuşuna basarak silgiyi etkinleştirin, devre dışı bırakmak için bırakın";
+    } else if (lang === "sv") {
+        eraserTooltip.textContent = "Tryck på 'E' för att aktivera suddgummit, släpp för att inaktivera";
+    } else if (lang === "ar") {
+        eraserTooltip.textContent = "اضغط على 'E' لتمكين الممحاة، اتركها لتعطيلها";
+    } else if (lang === "hi") {
+        eraserTooltip.textContent = "'E' दबाकर इरेज़र सक्षम करें, अक्षम करने के लिए छोड़ें";
+    } else if (lang === "ja") {
+        eraserTooltip.textContent = "'E'を押して消しゴムを有効にし、離して無効にします";
+    } else if (lang === "ko") {
+        eraserTooltip.textContent = "'E'를 눌러 지우개를 활성화하고 놓아서 비활성화합니다";
+    } else if (lang === "zh") { 
+        eraserTooltip.textContent = "按'E'启用橡皮擦，释放以禁用";
+    } else if (lang === "ru") {
+        eraserTooltip.textContent = "Нажмите 'E', чтобы включить ластик, отпустите, чтобы отключить";
+    } else {
+        eraserTooltip.textContent = "Press 'E' to enable eraser, release to disable";
+    }
+});
+
+// Met à jour le curseur à chaque changement d'état de la gomme
+document.getElementById("eraserButton").addEventListener("click", updateEraserCursor);
+colorPicker.addEventListener("input", updateEraserCursor);
+brushSizeSelect.addEventListener("change", updateEraserCursor);
+brushShapeSelect.addEventListener("change", updateEraserCursor);
+document.addEventListener("keydown", function(event) {
+    if (event.key === "e" || event.key === "E") updateEraserCursor();
+});
+document.addEventListener("keyup", function(event) {
+    if (event.key === "e" || event.key === "E") updateEraserCursor();
+});
+
+// Détecter automatiquement la langue du navigateur et l'appliquer
+const userLang = navigator.language || navigator.userLanguage;
+if (userLang) {
+    const langCode = userLang.split('-')[0]; // Extraire le code de langue (ex: "fr" de "fr-FR")
+    if (translations[langCode]) {
+        languageSelect.value = langCode;
+        languageSelect.dispatchEvent(new Event("change"));
+    }
+}
+
+// Raccourcis clavier Undo/Redo (Windows, macOS, Linux)
+document.removeEventListener("keydown", window.__undoRedoListener || (() => {})); // au cas où
+window.__undoRedoListener = function(event) {
+    // Ne pas intercepter si on est dans un champ de saisie
+    const t = event.target;
+    const isEditable = t && (t.isContentEditable || ["INPUT","TEXTAREA","SELECT"].includes(t.tagName));
+    if (isEditable) return;
+
+    const ctrlOrCmd = event.ctrlKey || event.metaKey;
+    if (!ctrlOrCmd) return;
+
+    const key = event.key.toLowerCase();
+
+    // Undo: Ctrl/Cmd + Z (sans Shift)
+    const isUndo = key === "z" && !event.shiftKey;
+
+    // Redo: Ctrl/Cmd + Y OU Ctrl/Cmd + Shift + Z
+    const isRedo = key === "y" || (key === "z" && event.shiftKey);
+
+    if (isUndo) {
+        event.preventDefault();
+        if (historyIndex > 0) {
+            historyIndex--;
+            restoreState();
+        }
+    } else if (isRedo) {
+        event.preventDefault();
+        if (historyIndex < history.length - 1) {
+            historyIndex++;
+            restoreState();
+        }
+    }
+};
+document.addEventListener("keydown", window.__undoRedoListener);
+
+// Afficher une indication visuelle pour les raccourcis clavier Undo/Redo
+const undoRedoTooltip = document.createElement("div");
+undoRedoTooltip.style.position = "absolute";
+undoRedoTooltip.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+undoRedoTooltip.style.color = "#fff";
+undoRedoTooltip.style.padding = "5px";
+undoRedoTooltip.style.borderRadius = "3px";
+undoRedoTooltip.style.pointerEvents = "none";
+undoRedoTooltip.style.display = "none";
+undoRedoTooltip.textContent = "Raccourcis: Ctrl/Cmd + Z pour Annuler, Ctrl/Cmd + Y ou Ctrl/Cmd + Shift + Z pour Refaire";
+document.body.appendChild(undoRedoTooltip);
+document.getElementById("undoButton").addEventListener("mouseenter", function(event) {
+    undoRedoTooltip.style.left = event.pageX + 10 + "px";
+    undoRedoTooltip.style.top = event.pageY + 10 + "px";
+    undoRedoTooltip.style.display = "block";
+});
+document.getElementById("undoButton").addEventListener("mousemove", function(event) {
+    undoRedoTooltip.style.left = event.pageX + 10 + "px";
+    undoRedoTooltip.style.top = event.pageY + 10 + "px";
+});
+document.getElementById("undoButton").addEventListener("mouseleave", function() {
+    undoRedoTooltip.style.display = "none";
+});
+document.getElementById("redoButton").addEventListener("mouseenter", function(event) {
+    undoRedoTooltip.style.left = event.pageX + 10 + "px";
+    undoRedoTooltip.style.top = event.pageY + 10 + "px";
+    undoRedoTooltip.style.display = "block";
+});
+document.getElementById("redoButton").addEventListener("mousemove", function(event) {
+    undoRedoTooltip.style.left = event.pageX + 10 + "px";
+    undoRedoTooltip.style.top = event.pageY + 10 + "px";
+});
+document.getElementById("redoButton").addEventListener("mouseleave", function() {
+    undoRedoTooltip.style.display = "none";
+});
+
+// Traductions pour l'indication visuelle des raccourcis clavier Undo/Redo
+const undoRedoTooltipTranslations = {
+    fr: "Raccourcis: Ctrl/Cmd + Z pour Annuler, Ctrl/Cmd + Y ou Ctrl/Cmd + Shift + Z pour Refaire",
+    en: "Shortcuts: Ctrl/Cmd + Z to Undo, Ctrl/Cmd + Y or Ctrl/Cmd + Shift + Z to Redo",
+    es: "Atajos: Ctrl/Cmd + Z para Deshacer, Ctrl/Cmd + Y o Ctrl/Cmd + Shift + Z para Rehacer",
+    de: "Tastenkombinationen: Strg/Cmd + Z zum Rückgängig machen, Strg/Cmd + Y oder Strg/Cmd + Shift + Z zum Wiederholen",
+    it: "Scorciatoie: Ctrl/Cmd + Z per Annulla, Ctrl/Cmd + Y o Ctrl/Cmd + Shift + Z per Ripeti",
+    pt: "Atalhos: Ctrl/Cmd + Z para Desfazer, Ctrl/Cmd + Y ou Ctrl/Cmd + Shift + Z para Refazer",
+    nl: "Sneltoetsen: Ctrl/Cmd + Z om ongedaan te maken, Ctrl/Cmd + Y of Ctrl/Cmd + Shift + Z om opnieuw te doen",
+    tr: "Kısayollar: Geri Almak için Ctrl/Cmd + Z, Yeniden Yapmak için Ctrl/Cmd + Y veya Ctrl/Cmd + Shift + Z",
+    sv: "Kortkommandon: Ctrl/Cmd + Z för att ångra, Ctrl/Cmd + Y eller Ctrl/Cmd + Shift + Z för att göra om",
+    ar: "الاختصارات: Ctrl/Cmd + Z للتراجع، Ctrl/Cmd + Y أو Ctrl/Cmd + Shift + Z للإعادة",
+    hi: "शॉर्टकट्स: पूर्ववत करने के लिए Ctrl/Cmd + Z, पुनः करने के लिए Ctrl/Cmd + Y या Ctrl/Cmd + Shift + Z",
+    ja: "ショートカット：元に戻すにはCtrl/Cmd + Z、やり直すにはCtrl/Cmd + YまたはCtrl/Cmd + Shift + Z",
+    ko: "단축키: 실행 취소하려면 Ctrl/Cmd + Z, 다시 실행하려면 Ctrl/Cmd + Y 또는 Ctrl/Cmd + Shift + Z",
+    zh: "快捷键：按Ctrl/Cmd + Z撤销，按Ctrl/Cmd + Y或Ctrl/Cmd + Shift + Z重做",
+    ru: "Сочетания клавиш: Ctrl/Cmd + Z для отмены, Ctrl/Cmd + Y или Ctrl/Cmd + Shift + Z для повтора"
+};
+languageSelect.addEventListener("change", function(event) {
+    const lang = event.target.value;
+    undoRedoTooltip.textContent = undoRedoTooltipTranslations[lang] || undoRedoTooltipTranslations["en"];
 });

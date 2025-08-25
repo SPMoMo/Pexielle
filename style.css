@@ -690,3 +690,37 @@ body.easter-egg-active {
     outline: none;
     box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
 }
+
+/* Style pour le bouton gomme */
+.eraser {
+    margin-top: 20px;
+    text-align: center;
+}
+.eraser button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9b59b6; /* Couleur violette */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.eraser button:hover {
+    background-color: #8e44ad; /* Couleur violette plus foncée au survol */
+}
+
+.eraser button:active {
+    background-color: #732d91; /* Couleur violette encore plus foncée au clic */
+}
+
+/* Style pour le bouton gomme lorsqu'il est actif */
+.eraser button.active {
+    background-color: #6c3483; /* Couleur violette foncée pour indiquer qu'il est actif */
+}
+.eraser button.active:hover {
+    background-color: #5b2c6f; /* Couleur violette encore plus foncée au survol lorsqu'il est actif */
+}
+.eraser button.active:active {
+    background-color: #4a235a; /* Couleur violette très foncée au clic lorsqu'il est actif */
+}
