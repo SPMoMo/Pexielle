@@ -127,13 +127,12 @@ resetButton.addEventListener("click", function() {
     saveState(); // on garde l’état vidé dans l’historique
 });
 
-// Télécharger l'image
+// Télécharger l'image au format pixel-art-DDMMYYYY-HHMMSS.png
 const downloadButton = document.getElementById("downloadButton");
 downloadButton.addEventListener("click", function() {
-    const imageData = canvas.toDataURL("image/png");
     const link = document.createElement("a");
-    link.href = imageData;
-    link.download = "pixel-art.png";
+    link.download = `pixel-art-${new Date().toISOString().replace(/[:.-]/g, "").slice(0,15)}.png`;
+    link.href = canvas.toDataURL();
     link.click();
 });
 
